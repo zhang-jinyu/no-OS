@@ -1,0 +1,7 @@
+<map id="drivers/adc/ad6673/ad6673.h" name="drivers/adc/ad6673/ad6673.h">
+<area shape="rect" id="node1" title="Header file of AD6673 Driver." alt="" coords="10,5,157,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,76,196"/>
+<area shape="rect" id="node3" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="37,95,130,121"/>
+<area shape="rect" id="node4" href="$error_8h.html" title="Error codes definition." alt="" coords="154,95,258,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="172,169,240,196"/>
+</map>

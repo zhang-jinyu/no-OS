@@ -1,0 +1,14 @@
+<map id="drivers/frequency/adf5902/adf5902.c" name="drivers/frequency/adf5902/adf5902.c">
+<area shape="rect" id="node1" title="Implementation of adf5902 Driver." alt="" coords="175,5,368,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,84,121"/>
+<area shape="rect" id="node3" href="$adf5902_8h.html" title="Header file for adf5902 Driver." alt="" coords="108,95,195,121"/>
+<area shape="rect" id="node7" href="$error_8h.html" title="Error codes definition." alt="" coords="219,95,323,121"/>
+<area shape="rect" id="node9" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="348,95,456,121"/>
+<area shape="rect" id="node10" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="480,95,575,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="185,244,256,271"/>
+<area shape="rect" id="node5" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="51,169,145,196"/>
+<area shape="rect" id="node6" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="169,169,272,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="296,169,364,196"/>
+<area shape="rect" id="node11" title=" " alt="" coords="491,169,561,196"/>
+<area shape="rect" id="node12" title=" " alt="" coords="586,169,669,196"/>
+</map>

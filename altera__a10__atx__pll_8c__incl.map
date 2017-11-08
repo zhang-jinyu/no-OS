@@ -1,0 +1,10 @@
+<map id="drivers/axi_core/jesd204/altera_a10_atx_pll.c" name="drivers/axi_core/jesd204/altera_a10_atx_pll.c">
+<area shape="rect" id="node1" title="Driver for the Altera ATX PLL dynamic reconfiguration." alt="" coords="87,5,269,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,76,121"/>
+<area shape="rect" id="node3" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="260,169,355,196"/>
+<area shape="rect" id="node7" href="$altera__a10__atx__pll_8h.html" title=" " alt="" coords="101,95,255,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="240,244,311,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="335,244,405,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="133,244,215,271"/>
+<area shape="rect" id="node8" href="$altera__adxcvr_8h.html" title="Driver for the Altera ADXCVR Configuration." alt="" coords="113,169,235,196"/>
+</map>

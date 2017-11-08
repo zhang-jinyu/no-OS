@@ -1,0 +1,4 @@
+<map id="circular_buffer" name="circular_buffer">
+<area shape="rect" id="node1" title="Circular buffer descriptor." alt="" coords="5,109,120,136"/>
+<area shape="rect" id="node2" href="$structcb__ptr.html" title="Circular buffer pointer." alt="" coords="31,5,94,32"/>
+</map>

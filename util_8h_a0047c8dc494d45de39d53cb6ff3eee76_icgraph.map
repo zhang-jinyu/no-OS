@@ -1,0 +1,8 @@
+<map id="div_s64_rem" name="div_s64_rem">
+<area shape="rect" id="node1" title=" " alt="" coords="323,81,428,108"/>
+<area shape="rect" id="node2" href="$adxl355_8h.html#a3dfc3d88cc09e28b63a815471ebb25c6" title="Reads fifo data and returns the values converted in g." alt="" coords="108,5,275,32"/>
+<area shape="rect" id="node4" href="$adxl355_8h.html#ab2cca702bfd799f169c4c82cb13ecbb8" title="Reads the raw temperature data and converts it to millidegrees Celsius." alt="" coords="120,56,263,83"/>
+<area shape="rect" id="node5" href="$adxl355_8h.html#a31457c441689b591b9177bc6e4d877d0" title="Reads the raw output data of each axis and converts it to g." alt="" coords="125,107,257,133"/>
+<area shape="rect" id="node6" href="$iio_8h.html#a5de19adb6399a7b8b228beba45f1e739" title=" " alt="" coords="125,157,257,184"/>
+<area shape="rect" id="node3" href="$eval-adxl355-pmdz_2src_2main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,60,83"/>
+</map>

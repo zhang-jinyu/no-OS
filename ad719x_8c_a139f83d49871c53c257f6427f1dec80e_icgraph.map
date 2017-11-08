@@ -1,0 +1,14 @@
+<map id="ad719x_set_masked_register_value" name="ad719x_set_masked_register_value">
+<area shape="rect" id="node1" title="Write masked data into device register." alt="" coords="507,217,719,258"/>
+<area shape="rect" id="node2" href="$ad719x_8h.html#a7da6e6d09d461bc55b12d59b1906d4f0" title="Enables or disables the buffer on the ADC input channels." alt="" coords="273,5,434,32"/>
+<area shape="rect" id="node4" href="$ad719x_8h.html#a911e159361da297a10809f1cf6ba8059" title="Performs the given calibration to the specified channel." alt="" coords="35,401,170,428"/>
+<area shape="rect" id="node5" href="$ad719x_8h.html#a327761313910a3e05b836f3dce745d8b" title="Selects the channels to be enabled." alt="" coords="263,376,444,403"/>
+<area shape="rect" id="node7" href="$ad719x_8h.html#a1f9a83434b00811cd668ee24608ead73" title="Selects the clock source of the ADC." alt="" coords="275,56,432,83"/>
+<area shape="rect" id="node8" href="$ad719x_8h.html#a0ac28e19c3aa5715461cbe87b35d08b0" title="Configures the input mode of the ADC." alt="" coords="253,107,453,133"/>
+<area shape="rect" id="node9" href="$ad719x_8h.html#adba03dbb94c9be6c36bfbf0544f8eee8" title="Selects the filter output data rate of the ADC." alt="" coords="277,158,429,199"/>
+<area shape="rect" id="node10" href="$ad719x_8h.html#ae33e1b28ed3ad57936c490e6c7051b74" title="Selects the polarity of the conversion and the ADC input range." alt="" coords="275,325,432,352"/>
+<area shape="rect" id="node11" href="$ad719x_8h.html#a78080c164d4f5cb68cb301db60f3a8e5" title="Opens or closes the bridge power&#45;down switch of the ADC." alt="" coords="256,224,451,251"/>
+<area shape="rect" id="node12" href="$ad719x_8h.html#a80740112683ad61c5e762fffe013476e" title="Sets device into the specified operating mode." alt="" coords="248,275,459,301"/>
+<area shape="rect" id="node3" href="$ad719x_8h.html#abe338e9c6992908df702bb106f1e651d" title="Initializes the communication peripheral and the initial Values for AD719X Board and resets the devic..." alt="" coords="53,165,152,192"/>
+<area shape="rect" id="node6" href="$ad719x_8h.html#a5919c2732fd2a5703b71fbd65325b318" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,337,200,364"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ad7193_range_setup" name="ad7193_range_setup">
+<area shape="rect" id="node1" title="Selects the polarity of the conversion and the ADC input range." alt="" coords="248,31,405,57"/>
+<area shape="rect" id="node2" href="$ad7193_8h.html#a0e0ec305f72e9770fc18baaaa0fe7a4d" title="Initializes the communication peripheral and the initial Values for AD7193 Board and resets the devic..." alt="" coords="53,5,152,32"/>
+<area shape="rect" id="node3" href="$ad7193_8h.html#a11236380bcd1efe06f525189c29d2eb4" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,56,200,83"/>
+</map>

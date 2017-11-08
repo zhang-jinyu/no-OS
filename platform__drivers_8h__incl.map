@@ -1,0 +1,10 @@
+<map id="drivers/platform/generic/platform_drivers.h" name="drivers/platform/generic/platform_drivers.h">
+<area shape="rect" id="node1" title="Header file of Generic Platform Drivers." alt="" coords="222,5,401,47"/>
+<area shape="rect" id="node2" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="5,95,113,121"/>
+<area shape="rect" id="node4" href="$error_8h.html" title="Error codes definition." alt="" coords="499,95,603,121"/>
+<area shape="rect" id="node6" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="137,95,240,121"/>
+<area shape="rect" id="node7" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="265,95,358,121"/>
+<area shape="rect" id="node8" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="382,95,475,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="215,169,285,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="517,169,585,196"/>
+</map>

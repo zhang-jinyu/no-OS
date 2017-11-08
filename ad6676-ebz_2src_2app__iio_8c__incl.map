@@ -1,0 +1,23 @@
+<map id="projects/ad6676&#45;ebz/src/app_iio.c" name="projects/ad6676&#45;ebz/src/app_iio.c">
+<area shape="rect" id="node1" title="Application IIO setup." alt="" coords="233,5,388,47"/>
+<area shape="rect" id="node2" href="$error_8h.html" title="Error codes definition." alt="" coords="5,95,109,121"/>
+<area shape="rect" id="node4" href="$uart_8h.html" title="Header file of UART interface." alt="" coords="134,169,234,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="416,95,517,121"/>
+<area shape="rect" id="node7" href="$iio_8h.html" title="Header file of iio." alt="" coords="184,95,235,121"/>
+<area shape="rect" id="node11" href="$ad6676-ebz_2src_2parameters_8h.html" title="Platform dependent parameters." alt="" coords="541,95,651,121"/>
+<area shape="rect" id="node14" href="$ad6676-ebz_2src_2app__iio_8h.html" title="Application IIO setup." alt="" coords="310,95,391,121"/>
+<area shape="rect" id="node20" href="$irq_8h.html" title="Header file of IRQ interface." alt="" coords="231,319,321,345"/>
+<area shape="rect" id="node21" title=" " alt="" coords="675,95,767,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="23,169,91,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="490,393,561,420"/>
+<area shape="rect" id="node8" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="405,244,499,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="603,393,685,420"/>
+<area shape="rect" id="node10" title=" " alt="" coords="405,319,488,345"/>
+<area shape="rect" id="node12" href="$ad6676-ebz_2src_2app__config_8h.html" title="Config file for AD6676 project." alt="" coords="543,169,647,196"/>
+<area shape="rect" id="node13" title=" " alt="" coords="671,169,788,196"/>
+<area shape="rect" id="node15" href="$iio__axi__adc_8h.html" title="Header file of iio_axi_adc." alt="" coords="412,169,519,196"/>
+<area shape="rect" id="node16" href="$axi__adc__core_8h.html" title="Driver for the Analog Devices AXI&#45;ADC&#45;CORE module." alt="" coords="523,244,642,271"/>
+<area shape="rect" id="node19" href="$axi__dmac_8h.html" title="Driver for the Analog Devices AXI&#45;DMAC core." alt="" coords="666,244,763,271"/>
+<area shape="rect" id="node17" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="715,319,810,345"/>
+<area shape="rect" id="node18" title=" " alt="" coords="727,393,798,420"/>
+</map>

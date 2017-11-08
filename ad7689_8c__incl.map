@@ -1,0 +1,14 @@
+<map id="drivers/adc/ad7689/ad7689.c" name="drivers/adc/ad7689/ad7689.c">
+<area shape="rect" id="node1" title="Source file for the ad7689 driver." alt="" coords="253,5,399,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,76,196"/>
+<area shape="rect" id="node3" href="$ad7689_8h.html" title="Header file for the ad7689 driver." alt="" coords="225,95,307,121"/>
+<area shape="rect" id="node7" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="100,95,195,121"/>
+<area shape="rect" id="node8" href="$error_8h.html" title="Error codes definition." alt="" coords="465,95,569,121"/>
+<area shape="rect" id="node10" href="$print__log_8h.html" title="Print messages helpers." alt="" coords="593,95,723,121"/>
+<area shape="rect" id="node12" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="332,95,440,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="277,244,348,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="151,169,234,196"/>
+<area shape="rect" id="node6" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="309,169,402,196"/>
+<area shape="rect" id="node9" title=" " alt="" coords="483,169,551,196"/>
+<area shape="rect" id="node11" title=" " alt="" coords="625,169,691,196"/>
+</map>

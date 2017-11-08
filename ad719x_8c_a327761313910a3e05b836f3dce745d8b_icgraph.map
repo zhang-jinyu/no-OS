@@ -1,0 +1,5 @@
+<map id="ad719x_channels_select" name="ad719x_channels_select">
+<area shape="rect" id="node1" title="Selects the channels to be enabled." alt="" coords="248,31,429,57"/>
+<area shape="rect" id="node2" href="$ad719x_8h.html#a911e159361da297a10809f1cf6ba8059" title="Performs the given calibration to the specified channel." alt="" coords="35,5,170,32"/>
+<area shape="rect" id="node3" href="$ad719x_8h.html#a5919c2732fd2a5703b71fbd65325b318" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,56,200,83"/>
+</map>

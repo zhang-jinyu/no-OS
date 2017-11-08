@@ -1,0 +1,4 @@
+<map id="ad719x_config_input_mode" name="ad719x_config_input_mode">
+<area shape="rect" id="node1" title="Configures the input mode of the ADC." alt="" coords="152,5,352,32"/>
+<area shape="rect" id="node2" href="$ad719x_8h.html#abe338e9c6992908df702bb106f1e651d" title="Initializes the communication peripheral and the initial Values for AD719X Board and resets the devic..." alt="" coords="5,5,104,32"/>
+</map>

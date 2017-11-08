@@ -1,0 +1,13 @@
+<map id="drivers/adc/ad7193/ad7193.c" name="drivers/adc/ad7193/ad7193.c">
+<area shape="rect" id="node1" title="Implementation of AD7193 Driver." alt="" coords="286,5,433,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,244,76,271"/>
+<area shape="rect" id="node3" href="$ad7193_8h.html" title="Header file of AD7193 Driver." alt="" coords="259,95,342,121"/>
+<area shape="rect" id="node9" href="$error_8h.html" title="Error codes definition." alt="" coords="391,95,495,121"/>
+<area shape="rect" id="node11" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="533,95,641,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="265,244,336,271"/>
+<area shape="rect" id="node5" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="249,169,352,196"/>
+<area shape="rect" id="node6" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="377,169,470,196"/>
+<area shape="rect" id="node7" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="79,169,173,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="101,244,183,271"/>
+<area shape="rect" id="node10" title=" " alt="" coords="495,169,563,196"/>
+</map>

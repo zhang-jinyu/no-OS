@@ -1,0 +1,10 @@
+<map id="ad717x_init_param" name="ad717x_init_param">
+<area shape="rect" id="node1" title=" " alt="" coords="343,184,489,211"/>
+<area shape="rect" id="node2" href="$structad717x__channel__setup.html" title=" " alt="" coords="5,95,176,121"/>
+<area shape="rect" id="node3" href="$structad717x__filtcon.html" title=" " alt="" coords="200,95,317,121"/>
+<area shape="rect" id="node4" href="$structad717x__st__reg.html" title=" " alt="" coords="349,95,467,121"/>
+<area shape="rect" id="node5" href="$structspi__init__param.html" title="Structure holding the parameters for SPI initialization." alt="" coords="490,95,609,121"/>
+<area shape="rect" id="node6" href="$structspi__platform__ops.html" title="Structure holding SPI function pointers that point to the platform specific function." alt="" coords="479,5,614,32"/>
+<area shape="rect" id="node7" href="$structad717x__channel__map.html" title=" " alt="" coords="635,95,799,121"/>
+<area shape="rect" id="node8" href="$unionad717x__analog__inputs.html" title=" " alt="" coords="639,5,807,32"/>
+</map>

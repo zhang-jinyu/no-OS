@@ -1,0 +1,8 @@
+<map id="drivers/cdc/ad7746/ad7746.h" name="drivers/cdc/ad7746/ad7746.h">
+<area shape="rect" id="node1" title="Header file of AD7746 Driver." alt="" coords="55,5,200,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="33,169,104,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="231,169,314,196"/>
+<area shape="rect" id="node4" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="140,95,235,121"/>
+<area shape="rect" id="node6" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="22,95,115,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="136,169,207,196"/>
+</map>

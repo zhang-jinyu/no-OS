@@ -1,0 +1,7 @@
+<map id="ad7193_wait_rdy_go_low" name="ad7193_wait_rdy_go_low">
+<area shape="rect" id="node1" title="Waits for RDY pin to go low." alt="" coords="511,56,697,83"/>
+<area shape="rect" id="node2" href="$ad7193_8h.html#ac722f0b068a8f1244e0738a9225affe0" title="Performs the given calibration to the specified channel." alt="" coords="288,5,423,32"/>
+<area shape="rect" id="node3" href="$ad7193_8h.html#a6e5e627b237a8f4d1ab363f70ab2a9ea" title="Returns the average of several conversion results." alt="" coords="248,56,463,83"/>
+<area shape="rect" id="node4" href="$ad7193_8h.html#a4e5f2bb1f232bc928532cd3971176dba" title="Returns the result of a single conversion." alt="" coords="258,107,453,133"/>
+<area shape="rect" id="node5" href="$ad7193_8h.html#a11236380bcd1efe06f525189c29d2eb4" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,107,200,133"/>
+</map>

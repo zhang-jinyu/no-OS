@@ -1,0 +1,4 @@
+<map id="max_gpio_get" name="max_gpio_get">
+<area shape="rect" id="node1" title="Obtain the GPIO decriptor." alt="" coords="228,5,343,32"/>
+<area shape="rect" id="node2" href="$maxim__gpio_8c.html#a9448c6269f08a68bea57ec72ce16e18d" title="Get the value of an optional GPIO." alt="" coords="5,5,180,32"/>
+</map>

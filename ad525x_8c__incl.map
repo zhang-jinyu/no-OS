@@ -1,0 +1,10 @@
+<map id="drivers/potentiometer/ad525x/ad525x.c" name="drivers/potentiometer/ad525x/ad525x.c">
+<area shape="rect" id="node1" title=" " alt="" coords="77,5,241,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="73,95,144,121"/>
+<area shape="rect" id="node3" href="$ad525x_8h.html" title="Header file of AD525X Driver for Microblaze processor. This driver supporting the following devices :..." alt="" coords="169,95,251,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="175,244,245,271"/>
+<area shape="rect" id="node5" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="27,169,135,196"/>
+<area shape="rect" id="node6" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="159,169,261,196"/>
+<area shape="rect" id="node7" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="286,169,379,196"/>
+<area shape="rect" id="node8" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="403,169,497,196"/>
+</map>

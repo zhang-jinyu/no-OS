@@ -1,0 +1,13 @@
+<map id="drivers/gyro/adxrs290/adxrs290.c" name="drivers/gyro/adxrs290/adxrs290.c">
+<area shape="rect" id="node1" title="Implementation of ADXRS290 Driver." alt="" coords="283,5,447,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="101,244,172,271"/>
+<area shape="rect" id="node3" title=" " alt="" coords="383,95,453,121"/>
+<area shape="rect" id="node4" href="$error_8h.html" title="Error codes definition." alt="" coords="478,95,582,121"/>
+<area shape="rect" id="node6" href="$adxrs290_8h.html" title="Implementation of ADXRS290 Driver." alt="" coords="264,95,359,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="496,169,564,196"/>
+<area shape="rect" id="node7" title=" " alt="" coords="289,244,360,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="402,244,485,271"/>
+<area shape="rect" id="node9" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="24,169,127,196"/>
+<area shape="rect" id="node10" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="151,169,245,196"/>
+<area shape="rect" id="node11" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="269,169,364,196"/>
+</map>

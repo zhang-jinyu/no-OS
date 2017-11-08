@@ -1,0 +1,8 @@
+<map id="drivers/platform/stm32/stm32_uart.h" name="drivers/platform/stm32/stm32_uart.h">
+<area shape="rect" id="node1" title="Header file of UART driver for STM32." alt="" coords="35,5,207,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="47,169,117,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="22,95,105,121"/>
+<area shape="rect" id="node4" href="$uart_8h.html" title="Header file of UART interface." alt="" coords="129,95,229,121"/>
+<area shape="rect" id="node5" href="$stm32__hal_8h.html" title=" " alt="" coords="253,95,356,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="271,169,338,196"/>
+</map>

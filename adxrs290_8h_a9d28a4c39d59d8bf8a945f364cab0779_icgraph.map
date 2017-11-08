@@ -1,0 +1,10 @@
+<map id="adxrs290_reg_read" name="adxrs290_reg_read">
+<area shape="rect" id="node1" title="Read device register." alt="" coords="491,132,637,159"/>
+<area shape="rect" id="node2" href="$adxrs290_8h.html#af368749bc970398a575ef8417014848c" title="Get the high&#45;pass filter pole location." alt="" coords="285,5,424,32"/>
+<area shape="rect" id="node3" href="$adxrs290_8h.html#a8cab9a37aaeee40a1815ec52fab9924e" title="Get the low&#45;pass filter pole location." alt="" coords="287,56,422,83"/>
+<area shape="rect" id="node4" href="$adxrs290_8h.html#a577b03b60bb2ad4cd1713c1bf712368c" title=" " alt="" coords="108,157,219,184"/>
+<area shape="rect" id="node6" href="$adxrs290_8h.html#afc1c51c64e22a51dfac92899f21609d2" title="Set the low&#45;pass filter pole location." alt="" coords="286,157,423,184"/>
+<area shape="rect" id="node7" href="$adxrs290_8h.html#aaac78320a104deec1e5b3d21fc5105d6" title="Set the low&#45;pass filter pole location." alt="" coords="288,208,421,235"/>
+<area shape="rect" id="node8" href="$adxrs290_8h.html#ab4e680182efd5eb39184ea282cf56d4d" title="Set device operation mode." alt="" coords="267,259,443,285"/>
+<area shape="rect" id="node5" href="$adxrs290-pmdz_2src_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="5,157,60,184"/>
+</map>

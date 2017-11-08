@@ -1,0 +1,17 @@
+<map id="drivers/platform/stm32/stm32_hal.h" name="drivers/platform/stm32/stm32_hal.h">
+<area shape="rect" id="node1" title=" " alt="" coords="716,5,888,47"/>
+<area shape="rect" id="node2" href="$stm32__delay_8c.html" title="Implementation of stm32 delay functions." alt="" coords="5,95,177,136"/>
+<area shape="rect" id="node3" href="$stm32__gpio_8h.html" title="Header file for stm32 gpio specifics." alt="" coords="619,95,791,136"/>
+<area shape="rect" id="node8" href="$stm32__i2c_8h.html" title="Header file for the stm32 i2c driver." alt="" coords="201,95,373,136"/>
+<area shape="rect" id="node10" href="$stm32__spi_8h.html" title="Header file for the stm32 spi driver." alt="" coords="397,95,569,136"/>
+<area shape="rect" id="node11" href="$stm32__tdm_8h.html" title="Header file for the stm32 tdm driver." alt="" coords="815,95,987,136"/>
+<area shape="rect" id="node12" href="$stm32__uart_8h.html" title="Header file of UART driver for STM32." alt="" coords="1037,95,1209,136"/>
+<area shape="rect" id="node13" href="$stm32__uart_8c.html" title="Source file of UART driver for STM32." alt="" coords="1259,184,1431,225"/>
+<area shape="rect" id="node15" href="$stm32__uart__stdio_8c.html" title="Implementation file of stm32 UART driver stdout/stdin redirection." alt="" coords="1141,273,1313,315"/>
+<area shape="rect" id="node4" href="$stm32__gpio_8c.html" title="Implementation of stm32 gpio functionality." alt="" coords="567,184,739,225"/>
+<area shape="rect" id="node5" href="$stm32__spi_8c.html" title="Implementation of stm32 spi driver." alt="" coords="371,184,543,225"/>
+<area shape="rect" id="node6" href="$stm32__tdm_8c.html" title="Implementation of TDM driver using STM32&#39;s SAI peripheral." alt="" coords="815,184,987,225"/>
+<area shape="rect" id="node7" href="$eval-adxl355-pmdz_2src_2main_8c.html" title=" " alt="" coords="865,273,1027,315"/>
+<area shape="rect" id="node9" href="$stm32__i2c_8c.html" title="Implementation of stm32 i2c driver." alt="" coords="123,184,295,225"/>
+<area shape="rect" id="node14" href="$stm32__uart__stdio_8h.html" title="Header file of stm32 UART driver stdout/stdin redirection." alt="" coords="1063,184,1235,225"/>
+</map>

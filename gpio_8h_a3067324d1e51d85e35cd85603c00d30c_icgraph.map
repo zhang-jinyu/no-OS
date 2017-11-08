@@ -1,0 +1,17 @@
+<map id="gpio_get_value" name="gpio_get_value">
+<area shape="rect" id="node1" title="Get the value of the specified GPIO." alt="" coords="771,208,892,235"/>
+<area shape="rect" id="node2" href="$ad719x_8h.html#a9f998dc152f194f4830094059f8e0f32" title="Waits for RDY pin to go low." alt="" coords="533,56,720,83"/>
+<area shape="rect" id="node7" href="$ad7280a_8h.html#a01d8178a75054564a3f06f0520799f2a" title=" " alt="" coords="555,107,698,133"/>
+<area shape="rect" id="node8" href="$ad7768__evb_8c.html#ac58fafc30e663c4d7e2f794abb31ac22" title="ad7768evb_verify_status" alt="" coords="531,157,723,184"/>
+<area shape="rect" id="node9" href="$adf7023_8h.html#a8c05c851064bebafdbc2e810ce6a1cc2" title="Initializes the ADF7023." alt="" coords="575,208,678,235"/>
+<area shape="rect" id="node10" href="$adxrs290_8h.html#a2cd7532db4ac92531213eaa43ad8ff35" title="Get the state of data ready." alt="" coords="531,259,722,285"/>
+<area shape="rect" id="node11" href="$fmcadc5_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="599,309,654,336"/>
+<area shape="rect" id="node12" href="$blinky__example_8c.html#af1fd94582b37d9c0813630161dbd788a" title=" " alt="" coords="595,360,658,387"/>
+<area shape="rect" id="node3" href="$ad719x_8h.html#a911e159361da297a10809f1cf6ba8059" title="Performs the given calibration to the specified channel." alt="" coords="298,5,433,32"/>
+<area shape="rect" id="node4" href="$ad719x_8h.html#adcb7617f625bad20d98c3f902f5f1e92" title="Returns the average of several conversion results." alt="" coords="258,56,473,83"/>
+<area shape="rect" id="node5" href="$ad719x_8h.html#a8b2be560509098d550618957a4b4ef14" title="Returns the result of a single conversion." alt="" coords="268,107,463,133"/>
+<area shape="rect" id="node6" href="$ad719x_8h.html#a5919c2732fd2a5703b71fbd65325b318" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,107,200,133"/>
+<area shape="rect" id="node13" href="$blinky__example_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="338,309,393,336"/>
+<area shape="rect" id="node14" href="$mykonos__dbgjesd_8h.html#a9888728525b5878f7793e037716763d3" title="Gets JESD framer Pattern generator." alt="" coords="248,360,483,387"/>
+<area shape="rect" id="node15" href="$mykonos__dbgjesd_8h.html#aef882e01515c659d7bd8e7b69478bfb1" title="Performs set JESD framer Pattern Generator." alt="" coords="249,411,481,437"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="drivers/accel/adxl355/adxl355.c" name="drivers/accel/adxl355/adxl355.c">
+<area shape="rect" id="node1" title="Implementation of ADXL355 Driver." alt="" coords="5,5,167,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="16,244,87,271"/>
+<area shape="rect" id="node3" title=" " alt="" coords="52,95,120,121"/>
+<area shape="rect" id="node4" href="$adxl355_8h.html" title="Header file of ADXL355 Driver." alt="" coords="207,95,293,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="333,244,404,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="49,169,120,196"/>
+<area shape="rect" id="node7" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="144,169,239,196"/>
+<area shape="rect" id="node9" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="263,169,357,196"/>
+<area shape="rect" id="node10" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="381,169,474,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="150,244,233,271"/>
+</map>

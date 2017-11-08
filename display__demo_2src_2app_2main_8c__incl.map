@@ -1,0 +1,16 @@
+<map id="projects/display_demo/src/app/main.c" name="projects/display_demo/src/app/main.c">
+<area shape="rect" id="node1" title="Implementation of Main Function." alt="" coords="312,5,481,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="181,319,252,345"/>
+<area shape="rect" id="node3" href="$display__demo_2src_2app_2parameters_8h.html" title="Parameters Definitions." alt="" coords="434,95,543,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="567,95,684,121"/>
+<area shape="rect" id="node5" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="22,244,125,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="709,95,812,121"/>
+<area shape="rect" id="node7" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="279,244,372,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="836,95,930,121"/>
+<area shape="rect" id="node9" href="$ssd__1306_8h.html" title="Header file for ssd_1306 Driver." alt="" coords="144,95,238,121"/>
+<area shape="rect" id="node11" href="$display_8h.html" title="Header file for display Driver." alt="" coords="229,169,308,196"/>
+<area shape="rect" id="node12" href="$error_8h.html" title="Error codes definition." alt="" coords="955,95,1059,121"/>
+<area shape="rect" id="node14" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="397,244,505,271"/>
+<area shape="rect" id="node10" title=" " alt="" coords="82,169,153,196"/>
+<area shape="rect" id="node13" title=" " alt="" coords="973,169,1041,196"/>
+</map>

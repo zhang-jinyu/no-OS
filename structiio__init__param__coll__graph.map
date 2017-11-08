@@ -1,0 +1,12 @@
+<map id="iio_init_param" name="iio_init_param">
+<area shape="rect" id="node1" title=" " alt="" coords="100,380,215,407"/>
+<area shape="rect" id="node2" href="$structuart__desc.html" title="Stucture holding the UART descriptor." alt="" coords="65,291,151,317"/>
+<area shape="rect" id="node3" href="$structiio__device__init.html" title=" " alt="" coords="175,291,291,317"/>
+<area shape="rect" id="node4" href="$structiio__device.html" title="Structure holding channels and attributes of a device." alt="" coords="189,201,277,228"/>
+<area shape="rect" id="node5" href="$structiio__channel.html" title="Struct describing the scan type." alt="" coords="185,103,281,130"/>
+<area shape="rect" id="node6" href="$structiio__attribute.html" title="Structure holding pointers to show and store functions." alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node7" href="$structiio__chan__type.html" title="IIO channel types." alt="" coords="133,5,245,32"/>
+<area shape="rect" id="node8" href="$structscan__type.html" title=" " alt="" coords="269,5,357,32"/>
+<area shape="rect" id="node9" href="$structirq__ctrl__desc.html" title=" " alt="" coords="351,103,455,130"/>
+<area shape="rect" id="node10" href="$structirq__platform__ops.html" title="Structure holding IRQ function pointers that point to the platform specific function." alt="" coords="382,5,514,32"/>
+</map>

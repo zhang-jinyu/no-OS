@@ -1,0 +1,5 @@
+<map id="ad7193_channels_select" name="ad7193_channels_select">
+<area shape="rect" id="node1" title="Selects the channels to be enabled." alt="" coords="248,31,429,57"/>
+<area shape="rect" id="node2" href="$ad7193_8h.html#ac722f0b068a8f1244e0738a9225affe0" title="Performs the given calibration to the specified channel." alt="" coords="35,5,170,32"/>
+<area shape="rect" id="node3" href="$ad7193_8h.html#a11236380bcd1efe06f525189c29d2eb4" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,56,200,83"/>
+</map>

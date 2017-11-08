@@ -1,0 +1,4 @@
+<map id="rtc_stop" name="rtc_stop">
+<area shape="rect" id="node1" title="Stop the real time clock." alt="" coords="147,5,221,32"/>
+<area shape="rect" id="node2" href="$maxim__rtc_8c.html#a28a533ef2c88781f5964e609833f62fe" title="Set the current count for the real time clock." alt="" coords="5,5,99,32"/>
+</map>

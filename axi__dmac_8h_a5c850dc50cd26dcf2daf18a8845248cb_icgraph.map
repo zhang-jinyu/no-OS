@@ -1,0 +1,4 @@
+<map id="axi_dmac_remove" name="axi_dmac_remove">
+<area shape="rect" id="node1" title="axi_dmac_remove" alt="" coords="203,5,345,32"/>
+<area shape="rect" id="node2" href="$spi__engine_8h.html#a6a069273d8290df8b7c074891a703462" title="Free the resources allocated by spi_init()." alt="" coords="5,5,155,32"/>
+</map>

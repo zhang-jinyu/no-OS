@@ -1,0 +1,12 @@
+<map id="drivers/platform/maxim/maxim_rtc.c" name="drivers/platform/maxim/maxim_rtc.c">
+<area shape="rect" id="node1" title="Implementation of RTC driver." alt="" coords="213,5,391,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,76,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="77,95,145,121"/>
+<area shape="rect" id="node4" href="$irq_8h.html" title="Header file of IRQ interface." alt="" coords="258,169,349,196"/>
+<area shape="rect" id="node6" href="$rtc_8h.html" title="Header of the RTC interface." alt="" coords="423,169,514,196"/>
+<area shape="rect" id="node7" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="169,95,264,121"/>
+<area shape="rect" id="node9" href="$maxim_2rtc__extra_8h.html" title="Header file of RTC driver." alt="" coords="340,95,432,121"/>
+<area shape="rect" id="node10" title=" " alt="" coords="508,95,595,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="309,244,380,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="151,169,234,196"/>
+</map>

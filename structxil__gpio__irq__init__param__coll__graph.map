@@ -1,0 +1,5 @@
+<map id="xil_gpio_irq_init_param" name="xil_gpio_irq_init_param">
+<area shape="rect" id="node1" title="Structure holding the initialization parameters for Xilinx platform specific GPIO IRQ parameters." alt="" coords="5,184,180,211"/>
+<area shape="rect" id="node2" href="$structirq__ctrl__desc.html" title=" " alt="" coords="41,95,145,121"/>
+<area shape="rect" id="node3" href="$structirq__platform__ops.html" title="Structure holding IRQ function pointers that point to the platform specific function." alt="" coords="27,5,159,32"/>
+</map>

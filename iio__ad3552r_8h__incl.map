@@ -1,0 +1,12 @@
+<map id="drivers/dac/ad3552r/iio_ad3552r.h" name="drivers/dac/ad3552r/iio_ad3552r.h">
+<area shape="rect" id="node1" title=" " alt="" coords="273,5,423,47"/>
+<area shape="rect" id="node2" href="$ad3552r_8h.html" title="Header file of ad3552r Driver." alt="" coords="246,95,333,121"/>
+<area shape="rect" id="node9" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="496,95,589,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="254,244,325,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="427,169,509,196"/>
+<area shape="rect" id="node5" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="181,169,275,196"/>
+<area shape="rect" id="node6" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="299,169,402,196"/>
+<area shape="rect" id="node7" href="$crc8_8h.html" title="Header file of CRC&#45;8 computation." alt="" coords="5,169,107,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="19,244,93,271"/>
+<area shape="rect" id="node10" href="$circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="534,169,701,196"/>
+</map>

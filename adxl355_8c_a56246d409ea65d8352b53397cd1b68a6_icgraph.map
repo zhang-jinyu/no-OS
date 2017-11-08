@@ -1,0 +1,5 @@
+<map id="adxl355_set_op_mode" name="adxl355_set_op_mode">
+<area shape="rect" id="node1" title="Places the device into the given operation mode." alt="" coords="309,31,477,57"/>
+<area shape="rect" id="node2" href="$adxl355_8h.html#a04f6359f3e9f79c0254ac61465761bb2" title="Writes the low&#45;pass filter settings." alt="" coords="108,5,261,32"/>
+<area shape="rect" id="node3" href="$eval-adxl355-pmdz_2src_2main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,60,57"/>
+</map>

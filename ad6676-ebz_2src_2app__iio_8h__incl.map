@@ -1,0 +1,12 @@
+<map id="projects/ad6676&#45;ebz/src/app_iio.h" name="projects/ad6676&#45;ebz/src/app_iio.h">
+<area shape="rect" id="node1" title="Application IIO setup." alt="" coords="5,5,160,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="121,319,191,345"/>
+<area shape="rect" id="node3" href="$iio__axi__adc_8h.html" title="Header file of iio_axi_adc." alt="" coords="139,95,245,121"/>
+<area shape="rect" id="node4" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="323,244,416,271"/>
+<area shape="rect" id="node7" href="$axi__adc__core_8h.html" title="Driver for the Analog Devices AXI&#45;ADC&#45;CORE module." alt="" coords="197,169,315,196"/>
+<area shape="rect" id="node10" href="$axi__dmac_8h.html" title="Driver for the Analog Devices AXI&#45;DMAC core." alt="" coords="75,169,173,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="311,319,393,345"/>
+<area shape="rect" id="node6" title=" " alt="" coords="417,319,500,345"/>
+<area shape="rect" id="node8" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="203,244,298,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="215,319,286,345"/>
+</map>

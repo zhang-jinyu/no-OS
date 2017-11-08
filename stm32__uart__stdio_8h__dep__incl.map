@@ -1,0 +1,5 @@
+<map id="drivers/platform/stm32/stm32_uart_stdio.h" name="drivers/platform/stm32/stm32_uart_stdio.h">
+<area shape="rect" id="node1" title="Header file of stm32 UART driver stdout/stdin redirection." alt="" coords="101,5,273,47"/>
+<area shape="rect" id="node2" href="$stm32__uart__stdio_8c.html" title="Implementation file of stm32 UART driver stdout/stdin redirection." alt="" coords="5,95,177,136"/>
+<area shape="rect" id="node3" href="$eval-adxl355-pmdz_2src_2main_8c.html" title=" " alt="" coords="202,95,365,136"/>
+</map>

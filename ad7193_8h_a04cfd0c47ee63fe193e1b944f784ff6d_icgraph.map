@@ -1,0 +1,4 @@
+<map id="ad7193_set_bridge_switch" name="ad7193_set_bridge_switch">
+<area shape="rect" id="node1" title="Opens or closes the bridge power&#45;down switch of the ADC." alt="" coords="152,5,347,32"/>
+<area shape="rect" id="node2" href="$ad7193_8h.html#a0e0ec305f72e9770fc18baaaa0fe7a4d" title="Initializes the communication peripheral and the initial Values for AD7193 Board and resets the devic..." alt="" coords="5,5,104,32"/>
+</map>

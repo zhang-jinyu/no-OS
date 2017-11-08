@@ -1,0 +1,11 @@
+<map id="drivers/temperature/max31875/max31875.c" name="drivers/temperature/max31875/max31875.c">
+<area shape="rect" id="node1" title="Implementation of MAX31875 Driver." alt="" coords="32,5,211,47"/>
+<area shape="rect" id="node2" href="$error_8h.html" title="Error codes definition." alt="" coords="5,95,109,121"/>
+<area shape="rect" id="node4" href="$max31875_8h.html" title="Header file of MAX31875 Driver." alt="" coords="141,95,243,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="10,169,78,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="165,244,235,271"/>
+<area shape="rect" id="node6" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="153,169,247,196"/>
+<area shape="rect" id="node7" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="271,169,366,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="271,244,342,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="367,244,449,271"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="SystemClock_Config" name="SystemClock_Config">
+<area shape="rect" id="node1" title=" " alt="" coords="263,31,417,57"/>
+<area shape="rect" id="node2" href="$eval-adxl355-pmdz_2src_2main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="134,5,189,32"/>
+<area shape="rect" id="node3" href="$iio__demo_2src_2app_2main_8c.html#a83cc077921036b6051c9bf98900c7391" title="Initialize the power controller and set the core and peripherals clock divider." alt="" coords="108,56,215,83"/>
+<area shape="rect" id="node4" href="$ad7124-8pmdz_2src_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="5,56,60,83"/>
+</map>

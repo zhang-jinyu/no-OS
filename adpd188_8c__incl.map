@@ -1,0 +1,13 @@
+<map id="drivers/photo&#45;electronic/adpd188/adpd188.c" name="drivers/photo&#45;electronic/adpd188/adpd188.c">
+<area shape="rect" id="node1" title="ADPD188 driver implementation." alt="" coords="278,5,456,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="153,95,224,121"/>
+<area shape="rect" id="node3" href="$adpd188_8h.html" title="ADPD188 driver header file." alt="" coords="248,95,339,121"/>
+<area shape="rect" id="node9" href="$error_8h.html" title="Error codes definition." alt="" coords="388,95,492,121"/>
+<area shape="rect" id="node11" href="$delay_8h.html" title="Header file of Delay functions." alt="" coords="530,95,638,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="258,244,329,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="23,169,106,196"/>
+<area shape="rect" id="node6" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="130,169,223,196"/>
+<area shape="rect" id="node7" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="247,169,340,196"/>
+<area shape="rect" id="node8" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="365,169,468,196"/>
+<area shape="rect" id="node10" title=" " alt="" coords="492,169,560,196"/>
+</map>

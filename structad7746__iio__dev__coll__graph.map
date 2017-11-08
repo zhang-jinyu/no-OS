@@ -1,0 +1,18 @@
+<map id="ad7746_iio_dev" name="ad7746_iio_dev">
+<area shape="rect" id="node1" title=" " alt="" coords="736,215,860,241"/>
+<area shape="rect" id="node2" href="$structiio__device.html" title="Structure holding channels and attributes of a device." alt="" coords="509,112,597,139"/>
+<area shape="rect" id="node3" href="$structiio__channel.html" title="Struct describing the scan type." alt="" coords="287,96,383,123"/>
+<area shape="rect" id="node4" href="$structiio__attribute.html" title="Structure holding pointers to show and store functions." alt="" coords="22,25,123,52"/>
+<area shape="rect" id="node5" href="$structiio__chan__type.html" title="IIO channel types." alt="" coords="17,88,129,115"/>
+<area shape="rect" id="node6" href="$structscan__type.html" title=" " alt="" coords="29,139,117,165"/>
+<area shape="rect" id="node7" href="$structirq__ctrl__desc.html" title=" " alt="" coords="283,184,387,211"/>
+<area shape="rect" id="node8" href="$structirq__platform__ops.html" title="Structure holding IRQ function pointers that point to the platform specific function." alt="" coords="7,189,139,216"/>
+<area shape="rect" id="node9" href="$structad7746__dev.html" title=" " alt="" coords="503,240,604,267"/>
+<area shape="rect" id="node10" href="$structi2c__desc.html" title="Structure holding I2C descriptor." alt="" coords="296,240,375,267"/>
+<area shape="rect" id="node11" href="$structi2c__platform__ops.html" title="Structure holding I2C function pointers that point to the platform specific function." alt="" coords="5,240,140,267"/>
+<area shape="rect" id="node12" href="$structad7746__setup.html" title=" " alt="" coords="279,341,392,368"/>
+<area shape="rect" id="node13" href="$structad7746__vt.html" title=" " alt="" coords="27,291,118,317"/>
+<area shape="rect" id="node14" href="$structad7746__config.html" title=" " alt="" coords="15,341,131,368"/>
+<area shape="rect" id="node15" href="$structad7746__exc.html" title=" " alt="" coords="23,392,123,419"/>
+<area shape="rect" id="node16" href="$structad7746__cap.html" title=" " alt="" coords="23,443,123,469"/>
+</map>

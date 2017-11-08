@@ -1,0 +1,9 @@
+<map id="drivers/platform/altera/altera_i2c.c" name="drivers/platform/altera/altera_i2c.c">
+<area shape="rect" id="node1" title="Implementation of Altera I2C Generic Driver." alt="" coords="129,5,299,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,76,121"/>
+<area shape="rect" id="node3" href="$error_8h.html" title="Error codes definition." alt="" coords="101,95,205,121"/>
+<area shape="rect" id="node5" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="229,95,322,121"/>
+<area shape="rect" id="node7" href="$altera_2i2c__extra_8h.html" title=" " alt="" coords="347,95,441,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="119,169,187,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="240,169,311,196"/>
+</map>

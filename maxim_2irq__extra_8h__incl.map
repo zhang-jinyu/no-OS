@@ -1,0 +1,9 @@
+<map id="drivers/platform/maxim/irq_extra.h" name="drivers/platform/maxim/irq_extra.h">
+<area shape="rect" id="node1" title="Header file for maxim irq specifics." alt="" coords="139,5,316,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,108,196"/>
+<area shape="rect" id="node3" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="405,169,468,196"/>
+<area shape="rect" id="node5" href="$maxim_2gpio__extra_8h.html" title="Header file for maxim gpio specifics." alt="" coords="232,95,335,121"/>
+<area shape="rect" id="node7" href="$irq_8h.html" title="Header file of IRQ interface." alt="" coords="133,169,223,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="332,244,403,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="247,169,330,196"/>
+</map>

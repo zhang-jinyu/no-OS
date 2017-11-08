@@ -1,0 +1,5 @@
+<map id="ad719x_range_setup" name="ad719x_range_setup">
+<area shape="rect" id="node1" title="Selects the polarity of the conversion and the ADC input range." alt="" coords="248,31,405,57"/>
+<area shape="rect" id="node2" href="$ad719x_8h.html#abe338e9c6992908df702bb106f1e651d" title="Initializes the communication peripheral and the initial Values for AD719X Board and resets the devic..." alt="" coords="53,5,152,32"/>
+<area shape="rect" id="node3" href="$ad719x_8h.html#a5919c2732fd2a5703b71fbd65325b318" title="Read data from temperature sensor and converts it to Celsius degrees." alt="" coords="5,56,200,83"/>
+</map>

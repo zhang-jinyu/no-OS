@@ -1,0 +1,8 @@
+<map id="drivers/photo&#45;electronic/adpd188/adpd188.h" name="drivers/photo&#45;electronic/adpd188/adpd188.h">
+<area shape="rect" id="node1" title="ADPD188 driver header file." alt="" coords="90,5,268,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="202,169,273,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="26,95,108,121"/>
+<area shape="rect" id="node4" href="$i2c_8h.html" title="Header file of I2C Interface." alt="" coords="132,95,226,121"/>
+<area shape="rect" id="node5" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="250,95,343,121"/>
+<area shape="rect" id="node6" href="$gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="368,95,470,121"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="drivers/frequency/adf4371/adf4371.c" name="drivers/frequency/adf4371/adf4371.c">
+<area shape="rect" id="node1" title="Implementation of ADF4371 Driver." alt="" coords="203,5,396,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,76,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="278,169,361,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="155,95,241,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="266,95,333,121"/>
+<area shape="rect" id="node6" href="$error_8h.html" title="Error codes definition." alt="" coords="407,95,511,121"/>
+<area shape="rect" id="node8" href="$util_8h.html" title="Implementation of utility functions." alt="" coords="36,95,131,121"/>
+<area shape="rect" id="node10" href="$adf4371_8h.html" title="Header file of ADF4371 Driver." alt="" coords="536,95,623,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="407,169,475,196"/>
+<area shape="rect" id="node9" title=" " alt="" coords="477,244,548,271"/>
+<area shape="rect" id="node11" href="$spi_8h.html" title="Header file of SPI Interface." alt="" coords="550,169,643,196"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="drivers/platform/maxim/maxim_uart.h" name="drivers/platform/maxim/maxim_uart.h">
+<area shape="rect" id="node1" title="Header file of UART driver." alt="" coords="47,5,224,47"/>
+<area shape="rect" id="node2" href="$uart_8h.html" title="Header file of UART interface." alt="" coords="5,95,65,121"/>
+<area shape="rect" id="node4" href="$irq_8h.html" title="Header file of IRQ interface." alt="" coords="90,95,181,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="205,95,308,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="49,169,120,196"/>
+</map>
