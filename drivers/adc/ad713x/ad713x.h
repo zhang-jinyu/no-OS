@@ -575,7 +575,8 @@
 enum ad713x_supported_dev_ids {
 	ID_AD7132,
 	ID_AD7134,
-	ID_AD7136
+	ID_AD7136,
+	ID_AD4134
 };
 
 /**
