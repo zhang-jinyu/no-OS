@@ -81,6 +81,10 @@
 
 #endif // IIO_SUPPORT
 
+#ifdef DAC_DMA_EXAMPLE
+#include <string.h>
+#endif
+
 /******************************************************************************/
 /************************ Variables Definitions *******************************/
 /******************************************************************************/
@@ -147,17 +151,22 @@ struct axi_dac_init tx_dac_init = {
 struct axi_dmac_init rx_dmac_init = {
 	"rx_dmac",
 	CF_AD9361_RX_DMA_BASEADDR,
-	DMA_DEV_TO_MEM,
 	0
 };
 struct axi_dmac *rx_dmac;
 struct axi_dmac_init tx_dmac_init = {
 	"tx_dmac",
 	CF_AD9361_TX_DMA_BASEADDR,
-	DMA_MEM_TO_DEV,
-	DMA_CYCLIC
+	0
 };
 struct axi_dmac *tx_dmac;
+// MEM2MEM DMA
+struct axi_dmac_init mem_dmac_init = {
+	"mem_dmac",
+	0x7C600000,
+	0
+};
+struct axi_dmac *mem_dmac;
 
 AD9361_InitParam default_init_param = {
 	/* Device selection */
@@ -584,6 +593,11 @@ int main(void)
 		printf("axi_dmac_init rx init error: %"PRIi32"\n", status);
 		return status;
 	}
+	status = axi_dmac_init(&mem_dmac, &mem_dmac_init);
+	if (status < 0) {
+		printf("axi_dmac_init mem init error: %"PRIi32"\n", status);
+		return status;
+	}
 #ifndef AXI_ADC_NOT_PRESENT
 #if defined XILINX_PLATFORM || defined LINUX_PLATFORM || defined ALTERA_PLATFORM
 #ifdef DAC_DMA_EXAMPLE
@@ -593,14 +607,14 @@ int main(void)
 #endif
 	axi_dac_init(&ad9361_phy->tx_dac, &tx_dac_init);
 	axi_adc_init(&ad9361_phy->rx_adc, &rx_adc_init);
-	extern const uint32_t sine_lut_iq[1024];
+//	extern const uint32_t sine_lut_iq[1024];
 	axi_dac_set_datasel(ad9361_phy->tx_dac, -1, AXI_DAC_DATA_SEL_DMA);
-	axi_dac_load_custom_data(ad9361_phy->tx_dac, sine_lut_iq,
-				 ARRAY_SIZE(sine_lut_iq),
-				 (uintptr_t)dac_buffer);
-#ifdef XILINX_PLATFORM
-	Xil_DCacheFlush();
-#endif
+//	axi_dac_load_custom_data(ad9361_phy->tx_dac, sine_lut_iq,
+//				 ARRAY_SIZE(sine_lut_iq),
+//				 (uintptr_t)dac_buffer);
+//#ifdef XILINX_PLATFORM
+//	Xil_DCacheFlush();
+//#endif
 #else
 #ifdef FMCOMMS5
 	axi_dac_init(&ad9361_phy_b->tx_dac, &tx_dac_init);
@@ -652,7 +666,7 @@ int main(void)
 
 	struct callback_desc rx_dmac_callback = {
 		.ctx = rx_dmac,
-		.callback = axi_dmac_default_isr,
+		.callback = axi_dmac_dev_to_mem_isr,
 		.config = NULL
 	};
 
@@ -681,7 +695,7 @@ int main(void)
 #ifdef ADC_DMA_IRQ_EXAMPLE
 	struct callback_desc tx_dmac_callback = {
 		.ctx = tx_dmac,
-		.callback = axi_dmac_default_isr,
+		.callback = axi_dmac_mem_to_dev_isr,
 		.config = NULL
 	};
 
@@ -693,6 +707,22 @@ int main(void)
 	status = irq_enable(irq_desc, XPAR_FABRIC_AXI_AD9361_DAC_DMA_IRQ_INTR);
 	if(status < 0)
 		return status;
+
+	/* Set callback for MEM2MEM DMAC interrupt. */
+	struct callback_desc mem_dmac_callback = {
+		.ctx = mem_dmac,
+		.callback = axi_dmac_mem_to_mem_isr,
+		.config = NULL
+	};
+
+	status = irq_register_callback(irq_desc,
+				       XPAR_FABRIC_MEM2MEM_DMA_IRQ_INTR, &mem_dmac_callback);
+	if(status < 0)
+		return status;
+
+	status = irq_enable(irq_desc, XPAR_FABRIC_MEM2MEM_DMA_IRQ_INTR);
+	if(status < 0)
+		return status;
 #endif
 
 #ifdef FMCOMMS5
@@ -700,8 +730,80 @@ int main(void)
 				      samples * AD9361_ADC_DAC_BYTES_PER_SAMPLE *
 				      (ad9361_phy_b->tx_dac->num_channels + ad9361_phy->tx_dac->num_channels));
 #else
-	axi_dmac_transfer_nonblocking(tx_dmac, (uintptr_t)dac_buffer,
-				      sizeof(sine_lut_iq));
+	/*------------------------------------------------------------------------*/
+	/* Values that can be modified for testing large transfers */
+	tx_dmac->transfer_max_size = 0x7fff;//must be a multiple of bus width - 1
+	rx_dmac->transfer_max_size = 0x3fff;
+
+	tx_dmac->flags = 0;
+
+	/* Memory address to write constant data to be transmitted */
+	uint32_t address_mem = 0x4000000;
+	uint32_t *data_sent = (uint32_t *)0x4000000;
+	/* Number of times the constant data is copied fir achieving large
+	 * amounts of transmitted data */
+	uint32_t multiplications = 1;//3051 for 100MB
+	/* Number of bytes to be transmitted */
+	uint32_t to_send = sizeof(uint32_t)*8192*multiplications;
+	/* Variables used for constructing the correct data sequence to be
+	 * transmitted */
+	uint16_t i=0;
+	uint32_t data_i=0;
+	/* Copy the constant data in the memory multiple times */
+	for(uint32_t k=0; k<multiplications; k++) {
+		/* By writing 32768 bytes 3051 times we reach 100MB */
+		for(uint32_t j=0; j<8192; j+=2) {
+			data_i = i;
+			data_i <<= 20;
+			data_i |= (i<<4);
+			data_sent[(k*8192)+j]=data_i;
+			data_sent[(k*8192)+(j+1)]=data_i;
+			i++;
+		}
+	}
+
+	Xil_DCacheFlushRange((uintptr_t)address_mem, sizeof(uint32_t)*8192*multiplications);
+
+//	/* Uncomment if sine_lut_iq is desired to be sent for testing purposes */
+//	extern const uint32_t sine_lut_iq[1024];
+//	axi_dac_load_custom_data(ad9361_phy->tx_dac, sine_lut_iq,
+//				 ARRAY_SIZE(sine_lut_iq),
+//				 (uintptr_t)address_mem);
+//	to_send = sizeof(sine_lut_iq);
+
+	struct axi_dma_transfer transfer = {
+		// Number of bytes to write/read
+		to_send,
+		// Transfer done flag
+		0,
+		// Signal transfer mode
+		SW,
+		// Address of data source
+		(uintptr_t)address_mem,
+		// Address of data destination
+		0
+	};
+
+	/* Transfer the data. */
+	axi_dmac_transfer_start(tx_dmac, &transfer);
+
+	/* Flush cache data. */
+	Xil_DCacheInvalidateRange((uintptr_t)address_mem, sizeof(uint32_t)*8192*multiplications);
+
+	/* Internal loopback for receiving the same data that is transmitted
+	 * (for debugging purposes) */
+	ad9361_bist_loopback(ad9361_phy,1);
+
+	/* Debug message */
+	printf("Sent data: address=%#x samples=%lu channels=%u bits=%u bytes=%lu. To read from mem: %lu.\n",
+		   (uintptr_t)address_mem, multiplications*sizeof(uint32_t)*8192/8,
+		   tx_dac_init.num_channels,
+		   8 * sizeof(uint32_t),
+		   to_send,
+		   to_send/2);
+	/*------------------------------------------------------------------------*/
+
+	/* Wait for the system to be ready. */
 	mdelay(1000);
 #endif
 #endif
@@ -710,7 +812,47 @@ int main(void)
 			  samples * AD9361_ADC_DAC_BYTES_PER_SAMPLE *
 			  (ad9361_phy_b->rx_adc->num_channels + ad9361_phy->rx_adc->num_channels));
 #else
-	axi_dmac_transfer(rx_dmac, (uintptr_t)adc_buffer, sizeof(adc_buffer));
+	/*------------------------------------------------------------------------*/
+	/* Memory address to store read data */
+	uint32_t address_mem_read = 0xa000000;
+	/* Amount of data to be read, in bytes.
+	 * 20 MB of data, 1 Mega BYTE = 1 x 10^6 BYTES */
+	uint32_t to_read = sizeof(uint32_t)*8192*16;//*3051*2;//multiplications;
+	/* We will have to read to_read/2 bytes using the read mem tool.
+	 * This means that we have to_read/8 samples on channel. */
+
+	/* Set contents of memory where we will save the read data to
+	 * all zeros. */
+	memset((uint32_t *)address_mem_read,0x00,to_read*2);
+	Xil_DCacheFlushRange((uintptr_t)address_mem_read, to_read*2);
+
+	struct axi_dma_transfer read_transfer = {
+		// Number of bytes to write/read
+		to_read,
+		// Transfer done flag
+		0,
+		// Signal transfer mode
+		NO,
+		// Address of data source
+		0,
+		// Address of data destination
+		(uintptr_t)address_mem_read
+	};
+
+	/* Clear the cache. */
+	Xil_DCacheInvalidateRange((uintptr_t)address_mem_read, to_read);
+
+	/* Read the data from the ADC DMA. */
+	//axi_dmac_transfer(rx_dmac, (uintptr_t)address_mem_read, to_read);
+	axi_dmac_transfer_start(rx_dmac, &read_transfer);
+
+	/* Wait until transfer finishes */
+	status = axi_dmac_transfer_wait_completion(rx_dmac);
+	if(status < 0)
+			return status;
+
+	/* Clear the cache. */
+	Xil_DCacheInvalidateRange((uintptr_t)address_mem_read, to_read);
 #endif
 #ifdef XILINX_PLATFORM
 #ifdef FMCOMMS5
@@ -718,13 +860,74 @@ int main(void)
 				  samples * AD9361_ADC_DAC_BYTES_PER_SAMPLE * (ad9361_phy_b->rx_adc->num_channels
 						  +
 						  ad9361_phy->rx_adc->num_channels));
-#else
-	Xil_DCacheInvalidateRange((uintptr_t)adc_buffer, sizeof(adc_buffer));
 #endif
-	printf("DAC_DMA_EXAMPLE: address=%#lx samples=%lu channels=%u bits=%lu\n",
-	       (uintptr_t)adc_buffer, ARRAY_SIZE(adc_buffer), rx_adc_init.num_channels,
-	       8 * sizeof(adc_buffer[0]));
+	printf("DAC_DMA_EXAMPLE: address=%#x samples=%lu channels=%u bits=%u. No. of bytes read from mem: %lu \n",
+		   (uintptr_t)address_mem_read, to_read/8, rx_adc_init.num_channels,
+		   8 * sizeof(uint32_t), to_read/2);
+	/*------------------------------------------------------------------------*/
 #endif
+
+#ifdef XILINX_PLATFORM
+	/* MEM2MEM transfer ----------------------------------_-------------------*/
+	/* Uncomment if big transfer functionality testing is desired */
+	mem_dmac->transfer_max_size = 0x3fff;
+
+	/* Memory address to write constant data to be transmitted */
+	uint32_t src_address_mem = 0x4000000;
+
+	/* Memory address to store read data */
+	uint32_t dest_address_mem = 0xf000000;
+
+	/* Amount of data to read */
+	uint32_t to_transfer_mem = sizeof(uint32_t)*8192*multiplications;
+
+	/* Set contents of memory where we will save the read data to
+	 * all zeros. */
+	memset((uint32_t *)dest_address_mem,0x00,to_transfer_mem);
+	Xil_DCacheFlushRange((uintptr_t)dest_address_mem, to_transfer_mem);
+
+	struct axi_dma_transfer mem_transfer = {
+		// Number of bytes to write/read
+		to_transfer_mem,
+		// Transfer done flag
+		0,
+		// Signal transfer mode
+		SW,
+		// Address of data source
+		(uintptr_t)src_address_mem,
+		// Address of data destination
+		(uintptr_t)dest_address_mem,
+		// Address of data destination
+	};
+
+	/* Clear the cache. */
+	Xil_DCacheInvalidateRange((uintptr_t)dest_address_mem, to_transfer_mem);
+
+	/* Transfer the data. */
+	axi_dmac_transfer_start(mem_dmac, &mem_transfer);
+
+	/* Clear the cache. */
+	Xil_DCacheInvalidateRange((uintptr_t)dest_address_mem, to_transfer_mem);
+
+	//* Wait for alowing longer transfer, in case cyclic transfer. */
+	mdelay(10);
+
+	/* Stop DMA component */
+	axi_dmac_transfer_stop(mem_dmac);
+
+	/* Debug message */
+	printf("Sent data: from addr=%#x to addr=%#x. Spl=%lu chan=%u bits=%u. Bytes=%lu. To read from mem: %lu (more written if cyclic transfer).\n",
+		   (uintptr_t)src_address_mem,
+		   (uintptr_t)dest_address_mem,
+		   to_transfer_mem/8,
+		   tx_dac_init.num_channels,
+		   8 * sizeof(uint32_t),
+		   to_transfer_mem,
+		   to_transfer_mem/2);
+
+	/*------------------------------------------------------------------------*/
+#endif
+
 #endif
 #endif
 
