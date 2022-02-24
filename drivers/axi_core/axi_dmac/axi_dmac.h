@@ -53,8 +53,14 @@
 #define AXI_DMAC_IRQ_SOT			BIT(0)
 #define AXI_DMAC_IRQ_EOT			BIT(1)
 
+#define AXI_DMAC_REG_INTF_DESC		0x010
+#define AXI_DMAC_DMA_TYPE_DEST		GENMASK(5,4)
+#define AXI_DMAC_DMA_TYPE_SRC		GENMASK(13,12)
+//Define macro for src and dest
+
 #define AXI_DMAC_REG_CTRL			0x400
 #define AXI_DMAC_CTRL_ENABLE		BIT(0)
+#define AXI_DMAC_CTRL_DISABLE		0u
 #define AXI_DMAC_CTRL_PAUSE			BIT(1)
 
 #define AXI_DMAC_REG_TRANSFER_ID	0x404
@@ -73,7 +79,8 @@
 /******************************************************************************/
 enum dma_direction {
 	DMA_DEV_TO_MEM,
-	DMA_MEM_TO_DEV
+	DMA_MEM_TO_DEV,
+	DMA_MEM_TO_MEM
 };
 
 enum dma_flags {
@@ -82,11 +89,18 @@ enum dma_flags {
 	DMA_PARTIAL_REPORTING_EN = 4
 };
 
+enum cyclic_transfer {
+	NO = 0,
+	SW = 1,
+	HW = 2
+};
+
 struct axi_dma_transfer {
 	uint32_t size;
-	uint32_t address;
-	uint32_t size_done;
 	volatile bool transfer_done;
+	enum  cyclic_transfer cyclic;
+	uint32_t src_addr;
+	uint32_t dest_addr;
 };
 
 struct axi_dmac {
@@ -95,31 +109,38 @@ struct axi_dmac {
 	enum dma_direction direction;
 	uint32_t flags;
 	uint32_t transfer_max_size;
-	volatile struct axi_dma_transfer big_transfer;
+	volatile struct axi_dma_transfer transfer;
+	//Current sub-transfer properties
+	uint32_t init_addr;
+	uint32_t remaining_size;
+	uint32_t next_src_addr;
+	uint32_t next_dest_addr;
 };
 
 struct axi_dmac_init {
 	const char *name;
 	uint32_t base;
-	enum dma_direction direction;
 	uint32_t flags;
 };
 
 /******************************************************************************/
 /************************ Functions Declarations ******************************/
 /******************************************************************************/
-void axi_dmac_default_isr(void *instance);
+void axi_dmac_dev_to_mem_isr(void *instance);
+void axi_dmac_mem_to_dev_isr(void *instance);
+void axi_dmac_mem_to_mem_isr(void *instance);
+void axi_dmac_write_isr(void *instance);
 int32_t axi_dmac_read(struct axi_dmac *dmac, uint32_t reg_addr,
 		      uint32_t *reg_data);
 int32_t axi_dmac_write(struct axi_dmac *dmac, uint32_t reg_addr,
 		       uint32_t reg_data);
-int32_t axi_dmac_transfer_nonblocking(struct axi_dmac *dmac,
-				      uint32_t address, uint32_t size);
 int32_t axi_dmac_is_transfer_ready(struct axi_dmac *dmac, bool *rdy);
-int32_t axi_dmac_transfer(struct axi_dmac *dmac,
-			  uint32_t address, uint32_t size);
 int32_t axi_dmac_init(struct axi_dmac **adc_core,
 		      const struct axi_dmac_init *init);
 int32_t axi_dmac_remove(struct axi_dmac *dmac);
+int32_t axi_dmac_transfer_start(struct axi_dmac *dmac,
+		      struct axi_dma_transfer *dma_transfer);
+int32_t axi_dmac_transfer_wait_completion(struct axi_dmac *dmac);
+void axi_dmac_transfer_stop(struct axi_dmac *dmac);
 
 #endif
