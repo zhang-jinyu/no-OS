@@ -86,6 +86,10 @@ void axi_dmac_dev_to_mem_isr(void *instance)
 			/* Trigger the next transfer. */
 			axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 		}
+//		} else {
+//			dmac->transfer.transfer_done = true;
+//			dmac->next_dest_addr = 0;
+//		}
 	}
 	if (reg_val & AXI_DMAC_IRQ_EOT) {
 		if (!dmac->remaining_size) {
@@ -248,7 +252,11 @@ static int32_t axi_dmac_detect_caps(struct axi_dmac *dmac)
 	uint32_t dest_mem_mapped = 0;
 
 	dmac->max_length = -1;
+<<<<<<< HEAD
 	dmac->direction = INVALID_DIR;
+=======
+	dmac->direction = DMA_MEM_TO_MEM;
+>>>>>>> e1d3bf9649dde27bcb0e9f757a4fe02b1e06c834
 
 	/* Check if HW cyclic possible */
 	axi_dmac_read(dmac, AXI_DMAC_REG_FLAGS, &initial_reg_val);

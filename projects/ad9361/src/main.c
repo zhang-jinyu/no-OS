@@ -729,8 +729,13 @@ int main(void)
 #else
 	/*------------------------------------------------------------------------*/
 	/* Values that can be modified for testing large transfers */
+<<<<<<< HEAD
 	tx_dmac->max_length = 0x7fff;//must be a multiple of bus width - 1
 	rx_dmac->max_length = 0x3fff;
+=======
+	tx_dmac->max_length = 0x3fff;//must be a multiple of bus width - 1
+	rx_dmac->max_length = 0x1fff;
+>>>>>>> e1d3bf9649dde27bcb0e9f757a4fe02b1e06c834
 
 	/* Memory address to write constant data to be transmitted */
 	uint32_t address_mem = 0x4000000;
@@ -849,10 +854,17 @@ int main(void)
 	/* Clear the cache. */
 	Xil_DCacheInvalidateRange((uintptr_t)address_mem_read, to_read);
 
+<<<<<<< HEAD
 	/* Stop DMA rx component */
 	axi_dmac_transfer_stop(rx_dmac);
 	/* Stop DMA tx component */
 	axi_dmac_transfer_stop(tx_dmac);
+=======
+	/* Stop DMA tx component */
+	axi_dmac_transfer_stop(tx_dmac);
+	/* Stop DMA rx component */
+	axi_dmac_transfer_stop(rx_dmac);
+>>>>>>> e1d3bf9649dde27bcb0e9f757a4fe02b1e06c834
 
 #endif
 #ifdef XILINX_PLATFORM
