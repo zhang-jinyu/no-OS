@@ -150,21 +150,18 @@ struct axi_dac_init tx_dac_init = {
 };
 struct axi_dmac_init rx_dmac_init = {
 	"rx_dmac",
-	CF_AD9361_RX_DMA_BASEADDR,
-	0
+	CF_AD9361_RX_DMA_BASEADDR
 };
 struct axi_dmac *rx_dmac;
 struct axi_dmac_init tx_dmac_init = {
 	"tx_dmac",
-	CF_AD9361_TX_DMA_BASEADDR,
-	0
+	CF_AD9361_TX_DMA_BASEADDR
 };
 struct axi_dmac *tx_dmac;
 // MEM2MEM DMA
 struct axi_dmac_init mem_dmac_init = {
 	"mem_dmac",
-	0x7C600000,
-	0
+	0x7C600000
 };
 struct axi_dmac *mem_dmac;
 
@@ -732,17 +729,15 @@ int main(void)
 #else
 	/*------------------------------------------------------------------------*/
 	/* Values that can be modified for testing large transfers */
-	tx_dmac->transfer_max_size = 0x7fff;//must be a multiple of bus width - 1
-	rx_dmac->transfer_max_size = 0x3fff;
-
-	tx_dmac->flags = 0;
+	tx_dmac->max_length = 0x7fff;//must be a multiple of bus width - 1
+	rx_dmac->max_length = 0x3fff;
 
 	/* Memory address to write constant data to be transmitted */
 	uint32_t address_mem = 0x4000000;
 	uint32_t *data_sent = (uint32_t *)0x4000000;
 	/* Number of times the constant data is copied fir achieving large
 	 * amounts of transmitted data */
-	uint32_t multiplications = 1;//3051 for 100MB
+	uint32_t multiplications = 4;//3051 for 100MB
 	/* Number of bytes to be transmitted */
 	uint32_t to_send = sizeof(uint32_t)*8192*multiplications;
 	/* Variables used for constructing the correct data sequence to be
@@ -777,7 +772,7 @@ int main(void)
 		// Transfer done flag
 		0,
 		// Signal transfer mode
-		SW,
+		CYCLIC,
 		// Address of data source
 		(uintptr_t)address_mem,
 		// Address of data destination
@@ -853,6 +848,12 @@ int main(void)
 
 	/* Clear the cache. */
 	Xil_DCacheInvalidateRange((uintptr_t)address_mem_read, to_read);
+
+	/* Stop DMA rx component */
+	axi_dmac_transfer_stop(rx_dmac);
+	/* Stop DMA tx component */
+	axi_dmac_transfer_stop(tx_dmac);
+
 #endif
 #ifdef XILINX_PLATFORM
 #ifdef FMCOMMS5
@@ -870,7 +871,7 @@ int main(void)
 #ifdef XILINX_PLATFORM
 	/* MEM2MEM transfer ----------------------------------_-------------------*/
 	/* Uncomment if big transfer functionality testing is desired */
-	mem_dmac->transfer_max_size = 0x3fff;
+	mem_dmac->max_length = 0x3fff;
 
 	/* Memory address to write constant data to be transmitted */
 	uint32_t src_address_mem = 0x4000000;
@@ -892,7 +893,7 @@ int main(void)
 		// Transfer done flag
 		0,
 		// Signal transfer mode
-		SW,
+		NO,
 		// Address of data source
 		(uintptr_t)src_address_mem,
 		// Address of data destination
@@ -909,14 +910,18 @@ int main(void)
 	/* Clear the cache. */
 	Xil_DCacheInvalidateRange((uintptr_t)dest_address_mem, to_transfer_mem);
 
-	//* Wait for alowing longer transfer, in case cyclic transfer. */
+	/* Wait until transfer finishes */
+	status = axi_dmac_transfer_wait_completion(mem_dmac);
+	if(status < 0)
+		return status;
+
 	mdelay(10);
 
 	/* Stop DMA component */
 	axi_dmac_transfer_stop(mem_dmac);
 
 	/* Debug message */
-	printf("Sent data: from addr=%#x to addr=%#x. Spl=%lu chan=%u bits=%u. Bytes=%lu. To read from mem: %lu (more written if cyclic transfer).\n",
+	printf("Sent data: from addr=%#x to addr=%#x. Spl=%lu chan=%u bits=%u. Bytes=%lu. To read from mem: %lu.\n",
 		   (uintptr_t)src_address_mem,
 		   (uintptr_t)dest_address_mem,
 		   to_transfer_mem/8,

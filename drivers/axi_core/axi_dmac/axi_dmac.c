@@ -66,8 +66,8 @@ void axi_dmac_dev_to_mem_isr(void *instance)
 		if (dmac->remaining_size) {
 			/* See if remaining size is bigger than max transfer size and
 			 * set burst size. */
-			if (dmac->remaining_size > dmac->transfer_max_size) {
-				burst_size = dmac->transfer_max_size;
+			if (dmac->remaining_size > dmac->max_length) {
+				burst_size = dmac->max_length;
 			} else {
 				burst_size = dmac->remaining_size - 1;
 			}
@@ -84,10 +84,7 @@ void axi_dmac_dev_to_mem_isr(void *instance)
 			dmac->next_dest_addr = dmac->next_dest_addr + (burst_size + 1);
 
 			/* Trigger the next transfer. */
-			axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 0x1);
-		} else {
-			dmac->transfer.transfer_done = true;
-			dmac->next_dest_addr = 0;
+			axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 		}
 	}
 	if (reg_val & AXI_DMAC_IRQ_EOT) {
@@ -112,7 +109,7 @@ void axi_dmac_mem_to_dev_isr(void *instance)
 	axi_dmac_write(dmac, AXI_DMAC_REG_IRQ_PENDING, reg_val);
 
 	if (reg_val & AXI_DMAC_IRQ_SOT) {
-		if ((dmac->transfer.cyclic == SW) &&
+		if ((dmac->transfer.cyclic == CYCLIC) &&
 			(dmac->next_src_addr >= (dmac->init_addr + dmac->transfer.size - 1))) {
 			dmac->remaining_size = dmac->transfer.size;
 			dmac->next_src_addr = dmac->init_addr;
@@ -121,8 +118,8 @@ void axi_dmac_mem_to_dev_isr(void *instance)
 		if (dmac->remaining_size) {
 			/** See if remaining size is bigger than max transfer size and
 			 * set burst size. */
-			if (dmac->remaining_size > dmac->transfer_max_size) {
-				burst_size = dmac->transfer_max_size;
+			if (dmac->remaining_size > dmac->max_length) {
+				burst_size = dmac->max_length;
 			} else {
 				burst_size = dmac->remaining_size - 1;
 			}
@@ -139,11 +136,11 @@ void axi_dmac_mem_to_dev_isr(void *instance)
 			dmac->next_src_addr = dmac->next_src_addr + (burst_size + 1);
 
 			/* Trigger the current transfer */
-			axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 0x1);
+			axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 		}
 	}
 	if (reg_val & AXI_DMAC_IRQ_EOT) {
-		if ((!dmac->remaining_size) && (dmac->transfer.cyclic != SW)) {
+		if ((!dmac->remaining_size) && (dmac->transfer.cyclic != CYCLIC)) {
 			dmac->transfer.transfer_done = true;
 			dmac->next_src_addr = 0;
 		}
@@ -164,19 +161,11 @@ void axi_dmac_mem_to_mem_isr(void *instance)
 	axi_dmac_write(dmac, AXI_DMAC_REG_IRQ_PENDING, reg_val);
 
 	if (reg_val & AXI_DMAC_IRQ_SOT) {
-		if ((dmac->transfer.cyclic == SW) &&
-			(dmac->next_src_addr >= (dmac->init_addr + dmac->transfer.size - 1))) {
-			dmac->remaining_size = dmac->transfer.size;
-			/* Source address will go to start address
-			 * and destination address will advance. */
-			dmac->next_src_addr = dmac->init_addr;
-		}
-
 		if (dmac->remaining_size) {
 			/** See if remaining size is bigger than max transfer size and
 			 * set burst size. */
-			if (dmac->remaining_size > dmac->transfer_max_size) {
-				burst_size = dmac->transfer_max_size;
+			if (dmac->remaining_size > dmac->max_length) {
+				burst_size = dmac->max_length;
 			} else {
 				burst_size = dmac->remaining_size - 1;
 			}
@@ -195,15 +184,22 @@ void axi_dmac_mem_to_mem_isr(void *instance)
 			dmac->next_src_addr = dmac->next_src_addr + (burst_size + 1);
 			dmac->next_dest_addr = dmac->next_dest_addr + (burst_size + 1);
 
+			/* If transfer finished advance src address so that transfer_done can be set*/
+			if (!dmac->remaining_size) {
+				dmac->next_src_addr = dmac->next_src_addr + (burst_size + 1);
+			}
+
 			/* Trigger the current transfer */
-			axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 0x1);
+			axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 		}
 	}
 	if (reg_val & AXI_DMAC_IRQ_EOT) {
-		if ((!dmac->remaining_size) && (dmac->transfer.cyclic != SW)) {
-			dmac->transfer.transfer_done = true;
-			dmac->next_src_addr = 0;
-			dmac->next_dest_addr = 0;
+		if (!dmac->remaining_size) {
+			if(dmac->next_src_addr > (dmac->init_addr + dmac->transfer.size)) {
+				dmac->transfer.transfer_done = true;
+				dmac->next_src_addr = 0;
+				dmac->next_dest_addr = 0;
+			}
 		}
 	}
 }
@@ -243,15 +239,56 @@ int32_t axi_dmac_is_transfer_ready(struct axi_dmac *dmac, bool *rdy)
 }
 
 /*******************************************************************************
+ * @brief detect DMA capabilities
+ *******************************************************************************/
+static int32_t axi_dmac_detect_caps(struct axi_dmac *dmac)
+{
+	uint32_t reg_val, initial_reg_val = 0;
+	uint32_t src_mem_mapped = 0;
+	uint32_t dest_mem_mapped = 0;
+
+	dmac->max_length = -1;
+	dmac->direction = INVALID_DIR;
+
+	/* Check if HW cyclic possible */
+	axi_dmac_read(dmac, AXI_DMAC_REG_FLAGS, &initial_reg_val);
+	axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, DMA_CYCLIC);
+	axi_dmac_read(dmac, AXI_DMAC_REG_FLAGS, &reg_val);
+	if (reg_val == DMA_CYCLIC)
+		dmac->hw_cyclic = true;
+	/* Restore initial value for AXI_DMAC_REG_FLAGS register */
+	axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, initial_reg_val);
+
+	/* Get maximum burst size and set value. */
+	axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, dmac->max_length);
+	axi_dmac_read(dmac, AXI_DMAC_REG_X_LENGTH, &dmac->max_length);
+
+	/* Get transfer direction and set value. */
+	axi_dmac_write(dmac, AXI_DMAC_REG_DEST_ADDRESS, 0xffffffff);
+	axi_dmac_read(dmac, AXI_DMAC_REG_DEST_ADDRESS, &dest_mem_mapped);
+	axi_dmac_write(dmac, AXI_DMAC_REG_SRC_ADDRESS, 0xffffffff);
+	axi_dmac_read(dmac, AXI_DMAC_REG_SRC_ADDRESS, &src_mem_mapped);
+
+	if (dest_mem_mapped && !src_mem_mapped) {
+		dmac->direction = DMA_DEV_TO_MEM;
+	} else if (!dest_mem_mapped && src_mem_mapped) {
+		dmac->direction = DMA_MEM_TO_DEV;
+	} else if (dest_mem_mapped && src_mem_mapped) {
+		dmac->direction = DMA_MEM_TO_MEM;
+	} else {
+		printf("Destination and source memory-mapped interfaces not supported.\n");
+		return FAILURE;
+	}
+	return 0;
+}
+
+/*******************************************************************************
  * @brief axi_dmac_init
  *******************************************************************************/
 int32_t axi_dmac_init(struct axi_dmac **dmac_core,
 		      const struct axi_dmac_init *init)
 {
 	struct axi_dmac *dmac;
-	uint32_t reg_data = 0;
-	uint32_t dest = 0;
-	uint32_t src = 0;
 
 	dmac = (struct axi_dmac *)calloc(1, sizeof(*dmac));
 	if (!dmac)
@@ -259,26 +296,12 @@ int32_t axi_dmac_init(struct axi_dmac **dmac_core,
 
 	dmac->name = init->name;
 	dmac->base = init->base;
-	dmac->flags = init->flags;
-	dmac->transfer_max_size = -1;
-
-	axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, dmac->transfer_max_size);
-	axi_dmac_read(dmac, AXI_DMAC_REG_X_LENGTH, &dmac->transfer_max_size);
-
-	axi_dmac_read(dmac, AXI_DMAC_REG_INTF_DESC, &reg_data);
-	dest = (reg_data & AXI_DMAC_DMA_TYPE_DEST) >> 4;
-	src = (reg_data & AXI_DMAC_DMA_TYPE_SRC) >> 12;
-
-	if ((dest == 1) && (src == 0)) {
-		dmac->direction = DMA_MEM_TO_DEV;
-	} else if ((dest == 0) && (src == 2)) {
-		dmac->direction = DMA_DEV_TO_MEM;
-	} else if ((dest == 0) && (src == 0)) {
-		dmac->direction = DMA_MEM_TO_MEM;
-	} else
-		return FAILURE;
 
 	*dmac_core = dmac;
+
+	int32_t status = axi_dmac_detect_caps(*dmac_core);
+	if (status < 0)
+		return FAILURE;
 
 	return 0;
 }
@@ -316,13 +339,32 @@ int32_t axi_dmac_transfer_start(struct axi_dmac *dmac, struct axi_dma_transfer *
 	dmac->next_dest_addr = dma_transfer->dest_addr;
 	dmac->next_src_addr = dma_transfer->src_addr;
 
-	if (dmac->direction == DMA_MEM_TO_DEV) {
-		if ((dmac->flags == DMA_CYCLIC) && (dmac->remaining_size > dmac->transfer_max_size)) {
-			printf("!Current setting combination will lead to data loss!\n");
-			printf("	Transfer size exceeds maximum burst size.\n");
-			printf("	HW CYCLICc transfer ON.\n");
+	/* If HW cyclic transfer selected and not available, show error */
+	if ((!dmac->hw_cyclic) && (dma_transfer->cyclic == CYCLIC)) {
+		printf("Transfer mode not supported!\n");
+		return FAILURE;
+	}
+
+	/* Cyclic transfers not possible for DEV_TO_MEM and MEM_TO_MEM transmissions. */
+	if ((dmac->direction == DMA_DEV_TO_MEM) || (dmac->direction == DMA_MEM_TO_MEM)) {
+		if (dma_transfer->cyclic == CYCLIC) {
+			printf("Transfer mode not supported!\n");
+			return FAILURE;
 		}
 	}
+
+	/* Cyclic transfers set  to HW or SW depending on size */
+	if ((dmac->direction == DMA_MEM_TO_DEV) && (dmac->transfer.cyclic == CYCLIC)) {
+		if ((dmac->remaining_size -1) <= dmac->max_length) {
+			if (dmac->hw_cyclic)
+				axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, DMA_CYCLIC);
+		} else {
+			axi_dmac_read(dmac, AXI_DMAC_REG_FLAGS, &reg_val);
+			reg_val = reg_val & ~DMA_CYCLIC;
+			axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, reg_val);
+		}
+	}
+
 
 	/* Enable DMA if not already enabled. */
 	axi_dmac_read(dmac, AXI_DMAC_REG_CTRL, &reg_val);
@@ -332,10 +374,10 @@ int32_t axi_dmac_transfer_start(struct axi_dmac *dmac, struct axi_dma_transfer *
 		axi_dmac_write(dmac, AXI_DMAC_REG_IRQ_MASK, 0x0);
 	}
 
-	axi_dmac_read(dmac, AXI_DMAC_REG_START_TRANSFER, &reg_val);
+	axi_dmac_read(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, &reg_val);
 	/* If we don't have a start of transfer then start compute
 	 * values and trigger next transfer. */
-	if (!(reg_val & AXI_DMAC_IRQ_SOT)) {
+	if (!(reg_val & AXI_DMAC_QUEUE_FULL)) {
 		switch (dmac->direction) {
 		case DMA_DEV_TO_MEM:
 			dmac->init_addr = dmac->next_dest_addr;
@@ -359,8 +401,8 @@ int32_t axi_dmac_transfer_start(struct axi_dmac *dmac, struct axi_dma_transfer *
 		}
 
 		/* Compute the burst size. */
-		if (dmac->remaining_size > dmac->transfer_max_size) {
-			burst_size = dmac->transfer_max_size;
+		if (dmac->remaining_size > dmac->max_length) {
+			burst_size = dmac->max_length;
 		} else {
 			burst_size = dmac->remaining_size - 1;
 		}
@@ -387,8 +429,7 @@ int32_t axi_dmac_transfer_start(struct axi_dmac *dmac, struct axi_dma_transfer *
 		/* Specify the length of the transfer and trigger transfer. */
 		axi_dmac_write(dmac, AXI_DMAC_REG_X_LENGTH, burst_size);
 		axi_dmac_write(dmac, AXI_DMAC_REG_Y_LENGTH, 0x0);
-		axi_dmac_write(dmac, AXI_DMAC_REG_FLAGS, dmac->flags);
-		axi_dmac_write(dmac, AXI_DMAC_REG_START_TRANSFER, 0x1);
+		axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 	} else {
 		return FAILURE;
 	}
