@@ -730,7 +730,7 @@ int main(void)
 	/*------------------------------------------------------------------------*/
 	/* Values that can be modified for testing large transfers */
 	tx_dmac->max_length = 0x7fff;//must be a multiple of bus width - 1
-	rx_dmac->max_length = 0x3fff;
+	tx_dmac->max_length = 0x3fff;//must be a multiple of bus width - 1
 
 	/* Memory address to write constant data to be transmitted */
 	uint32_t address_mem = 0x4000000;

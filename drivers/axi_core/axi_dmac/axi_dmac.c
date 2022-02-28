@@ -86,6 +86,10 @@ void axi_dmac_dev_to_mem_isr(void *instance)
 			/* Trigger the next transfer. */
 			axi_dmac_write(dmac, AXI_DMAC_REG_TRANSFER_SUBMIT, AXI_DMAC_TRANSFER_SUBMIT);
 		}
+//		} else {
+//			dmac->transfer.transfer_done = true;
+//			dmac->next_dest_addr = 0;
+//		}
 	}
 	if (reg_val & AXI_DMAC_IRQ_EOT) {
 		if (!dmac->remaining_size) {
