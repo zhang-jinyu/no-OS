@@ -63,16 +63,19 @@
 #define AXI_DMAC_CTRL_DISABLE		0u
 #define AXI_DMAC_CTRL_PAUSE			BIT(1)
 
-#define AXI_DMAC_REG_TRANSFER_ID	0x404
-#define AXI_DMAC_REG_START_TRANSFER	0x408
-#define AXI_DMAC_REG_FLAGS			0x40c
-#define AXI_DMAC_REG_DEST_ADDRESS	0x410
-#define AXI_DMAC_REG_SRC_ADDRESS	0x414
-#define AXI_DMAC_REG_X_LENGTH		0x418
-#define AXI_DMAC_REG_Y_LENGTH		0x41c
-#define AXI_DMAC_REG_DEST_STRIDE	0x420
-#define AXI_DMAC_REG_SRC_STRIDE		0x424
-#define AXI_DMAC_REG_TRANSFER_DONE	0x428
+#define AXI_DMAC_REG_TRANSFER_ID		0x404
+//#define AXI_DMAC_REG_START_TRANSFER		0x408
+#define AXI_DMAC_REG_TRANSFER_SUBMIT	0x408
+#define AXI_DMAC_TRANSFER_SUBMIT		BIT(0)
+#define AXI_DMAC_QUEUE_FULL				BIT(0)
+#define AXI_DMAC_REG_FLAGS				0x40c
+#define AXI_DMAC_REG_DEST_ADDRESS		0x410
+#define AXI_DMAC_REG_SRC_ADDRESS		0x414
+#define AXI_DMAC_REG_X_LENGTH			0x418
+#define AXI_DMAC_REG_Y_LENGTH			0x41c
+#define AXI_DMAC_REG_DEST_STRIDE		0x420
+#define AXI_DMAC_REG_SRC_STRIDE			0x424
+#define AXI_DMAC_REG_TRANSFER_DONE		0x428
 
 /******************************************************************************/
 /*************************** Types Declarations *******************************/
@@ -89,16 +92,16 @@ enum dma_flags {
 	DMA_PARTIAL_REPORTING_EN = 4
 };
 
+// Could be transformed to a bool
 enum cyclic_transfer {
 	NO = 0,
-	SW = 1,
-	HW = 2
+	CYCLIC = 1
 };
 
 struct axi_dma_transfer {
 	uint32_t size;
 	volatile bool transfer_done;
-	enum  cyclic_transfer cyclic;
+	enum cyclic_transfer cyclic;
 	uint32_t src_addr;
 	uint32_t dest_addr;
 };
@@ -107,8 +110,8 @@ struct axi_dmac {
 	const char *name;
 	uint32_t base;
 	enum dma_direction direction;
-	uint32_t flags;
-	uint32_t transfer_max_size;
+	bool hw_cyclic;
+	uint32_t max_length;
 	volatile struct axi_dma_transfer transfer;
 	//Current sub-transfer properties
 	uint32_t init_addr;
@@ -120,7 +123,6 @@ struct axi_dmac {
 struct axi_dmac_init {
 	const char *name;
 	uint32_t base;
-	uint32_t flags;
 };
 
 /******************************************************************************/
