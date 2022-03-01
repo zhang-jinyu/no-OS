@@ -48,7 +48,7 @@
 #include "mxc_config.h"
 #include "mxc_sys.h"
 #include "board.h"
-#include "no-os/uart.h"
+#include "no_os_uart.h"
 #include "uart.h"
 
 #define CONSOLE_UART	(1)
