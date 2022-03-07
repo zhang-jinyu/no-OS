@@ -51,7 +51,7 @@
 /**
  * @brief maxim platform specific gpio platform ops structure
  */
-extern const struct gpio_platform_ops max_gpio_ops;
+extern const struct no_os_gpio_platform_ops max_gpio_ops;
 /**
  * @brief maxim platform specific gpio irq platform ops structure
  */
@@ -75,7 +75,7 @@ struct max_gpio_init_param {
 
 struct max_gpio_irq_param {
 	struct irq_ctrl_desc *parent;
-	struct gpio_desc *desc;
+	struct no_os_gpio_desc *desc;
 };
 
 #endif
