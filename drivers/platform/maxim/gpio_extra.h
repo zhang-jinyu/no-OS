@@ -55,14 +55,14 @@ extern const struct no_os_gpio_platform_ops max_gpio_ops;
 /**
  * @brief maxim platform specific gpio irq platform ops structure
  */
-extern const struct irq_platform_ops max_gpio_irq_ops;
+extern const struct no_os_irq_platform_ops max_gpio_irq_ops;
 
 /**
  * @struct gpio_irq_config
  * @brief maxim configuration descriptor for irq operations
  */
 struct gpio_irq_config {
-	enum irq_trig_level mode;
+	enum no_os_irq_trig_level mode;
 };
 
 struct max_gpio_init_param {
@@ -74,7 +74,7 @@ struct max_gpio_init_param {
 };
 
 struct max_gpio_irq_param {
-	struct irq_ctrl_desc *parent;
+	struct no_os_irq_ctrl_desc *parent;
 	struct no_os_gpio_desc *desc;
 };
 
