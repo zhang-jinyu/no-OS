@@ -76,6 +76,7 @@ int32_t max_spi_init(struct spi_desc **desc, const struct spi_init_param *param)
 		return -ENOMEM;
 
 	eparam = param->extra;
+
 	descriptor->device_id = param->device_id;
 	descriptor->max_speed_hz = param->max_speed_hz;
 	descriptor->chip_select = param->chip_select;
