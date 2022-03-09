@@ -104,6 +104,20 @@ enum gpio_values {
 };
 
 /**
+ * @enum gpio_pull_up
+ * @brief Enum that holds the possible pull up/ pull down resistor configuration.
+ */
+enum gpio_pull_up {
+	NO_OS_PULL_NONE,
+	/** Strong pull up */
+	NO_OS_PULL_UP,
+	/** Strong pull down */
+	NO_OS_PULL_DOWN,
+	NO_OS_PULL_UP_WEAK,
+	NO_OS_PULL_DOWN_WEAK
+};
+
+/**
  * @struct gpio_platform_ops
  * @brief Structure holding gpio function pointers that point to the platform
  * specific function
