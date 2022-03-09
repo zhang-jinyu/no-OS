@@ -387,7 +387,7 @@ static int32_t ad9081_multichip_sync(struct ad9081_phy *phy, int step)
 			return ret;
 
 		if (phy->jrx_link_tx.jesd_param.jesd_subclass ||
-			phy->jtx_link_rx[0].jesd_param.jesd_subclass)
+		    phy->jtx_link_rx[0].jesd_param.jesd_subclass)
 			subclass = JESD_SUBCLASS_1;
 
 		ret = adi_ad9081_jesd_oneshot_sync(&phy->ad9081, subclass);
@@ -528,7 +528,7 @@ static int32_t ad9081_setup(struct ad9081_phy *phy)
 
 	/* DC couple SYSREF default */
 	ret = adi_ad9081_jesd_sysref_input_mode_set(&phy->ad9081, 1, 1,
-		phy->sysref_coupling_ac_en ? COUPLING_AC : COUPLING_DC);
+			phy->sysref_coupling_ac_en ? COUPLING_AC : COUPLING_DC);
 	if (ret != 0)
 		return ret;
 
@@ -607,7 +607,7 @@ static int32_t ad9081_setup(struct ad9081_phy *phy)
 		return ret;
 
 	if (phy->jrx_link_tx.jesd_param.jesd_subclass ||
-		phy->jtx_link_rx[0].jesd_param.jesd_subclass)
+	    phy->jtx_link_rx[0].jesd_param.jesd_subclass)
 		subclass = JESD_SUBCLASS_1;
 
 	ret = adi_ad9081_jesd_oneshot_sync(&phy->ad9081, subclass);
@@ -657,7 +657,7 @@ static int32_t ad9081_setup(struct ad9081_phy *phy)
 		return ret;
 
 
-	/* setup txfe jtx converter mapping */
+	/* Setup txfe jtx converter mapping */
 	for (i = 0; i < ARRAY_SIZE(phy->jtx_link_rx[0].link_converter_select);
 	     i++) {
 		ret = adi_ad9081_jesd_tx_conv_sel_set(
@@ -840,7 +840,7 @@ static int32_t ad9081_setup(struct ad9081_phy *phy)
 
 	for_each_cddc(i, phy->rx_cddc_select) {
 		ret = adi_ad9081_adc_nyquist_zone_set(&phy->ad9081, BIT(i),
-			phy->rx_nyquist_zone[i]);
+						      phy->rx_nyquist_zone[i]);
 		if (ret != 0)
 			return ret;
 	}
@@ -902,7 +902,7 @@ static int32_t ad9081_spi_xfer(void *user_data, uint8_t *in_data,
 			data[i] =  in_data[bytes_number - i + 1];
 	}
 
-	ret = spi_write_and_read(phy->spi_desc, data, bytes_number);
+	ret = no_os_spi_write_and_read(phy->spi_desc, data, bytes_number);
 	if (ret != SUCCESS)
 		return FAILURE;
 
@@ -1066,7 +1066,7 @@ int32_t ad9081_init(struct ad9081_phy **dev,
 	if (ret < 0)
 		goto error_1;
 
-	ret = spi_init(&phy->spi_desc, init_param->spi_init);
+	ret = no_os_spi_init(&phy->spi_desc, init_param->spi_init);
 	if (ret < 0)
 		goto error_2;
 
@@ -1081,7 +1081,7 @@ int32_t ad9081_init(struct ad9081_phy **dev,
 	phy->ad9081.hal_info.reset_pin_ctrl = ad9081_reset_pin_ctrl;
 	phy->ad9081.hal_info.sdo = SPI_SDO;
 	phy->ad9081.hal_info.msb = (phy->spi_desc->bit_order ==
-				    SPI_BIT_ORDER_MSB_FIRST) ? SPI_MSB_FIRST : SPI_MSB_LAST;
+				    NO_OS_SPI_BIT_ORDER_MSB_FIRST) ? SPI_MSB_FIRST : SPI_MSB_LAST;
 	phy->ad9081.hal_info.addr_inc = SPI_ADDR_INC_AUTO;
 	phy->ad9081.hal_info.spi_xfer = ad9081_spi_xfer;
 	phy->ad9081.hal_info.log_write = ad9081_log_write;
@@ -1127,7 +1127,7 @@ int32_t ad9081_init(struct ad9081_phy **dev,
 	return SUCCESS;
 
 error_3:
-	spi_remove(phy->spi_desc);
+	no_os_spi_remove(phy->spi_desc);
 error_2:
 	no_os_gpio_remove(phy->gpio_reset);
 error_1:
@@ -1146,7 +1146,7 @@ int32_t ad9081_remove(struct ad9081_phy *dev)
 	int32_t ret;
 
 	ret = no_os_gpio_remove(dev->gpio_reset);
-	ret += spi_remove(dev->spi_desc);
+	ret += no_os_spi_remove(dev->spi_desc);
 	free(dev);
 
 	return ret;

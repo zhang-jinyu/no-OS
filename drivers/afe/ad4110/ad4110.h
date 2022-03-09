@@ -264,7 +264,7 @@ enum ad4110_gain {
 
 struct ad4110_dev {
 	/* SPI */
-	struct spi_desc			*spi_dev;
+	struct no_os_spi_desc			*spi_dev;
 	/* Device Settings */
 	enum ad4110_voltage_reference volt_ref;
 	enum ad4110_state		data_stat;
@@ -284,7 +284,7 @@ struct ad4110_dev {
 
 struct ad4110_init_param {
 	/* SPI */
-	struct spi_init_param		spi_init;
+	struct no_os_spi_init_param		spi_init;
 	/* Device Settings */
 	enum ad4110_voltage_reference volt_ref;
 	enum ad4110_state		data_stat;
