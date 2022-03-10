@@ -62,9 +62,9 @@
 #define STDOUT_FILENO   1   /**> Definition of stdout */
 #define STDERR_FILENO   2   /**> Definition of stderr */
 
-static struct uart_desc *mdesc;
+static struct no_os_uart_desc *mdesc;
 
-void maxim_uart_stdio(struct uart_desc *desc)
+void maxim_uart_stdio(struct no_os_uart_desc *desc)
 {
 	if (!desc)
 		return;
@@ -98,7 +98,7 @@ int _read(int file, char *ptr, int len)
 
 	switch (file) {
 	case STDIN_FILENO:
-		ret = uart_read(mdesc, (uint8_t *)ptr, len);
+		ret = no_os_uart_read(mdesc, (uint8_t *)ptr, len);
 		if (ret < 0) {
 			errno = ret;
 			return -1;
@@ -117,7 +117,7 @@ int _write(int file, char *ptr, int len)
 	switch (file) {
 	case STDOUT_FILENO:
 	case STDERR_FILENO:
-		ret = uart_write(mdesc, (const uint8_t *)ptr, len);
+		ret = no_os_uart_write(mdesc, (const uint8_t *)ptr, len);
 		if (ret < 0) {
 			errno = ret;
 			return -1;
