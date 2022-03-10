@@ -342,7 +342,7 @@
 /* Half scale of the AD7768-1 = 2^23 = 8388608 */
 #define AD7768_HALF_SCALE						(1 << (AD7768_N_BITS - 1))
 
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+#define NO_OS_ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
 #define ENABLE		1
 #define DISABLE		0

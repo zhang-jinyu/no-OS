@@ -64,7 +64,7 @@ static void _gpio_irq(uint8_t port)
 	/** Clear interrupt flags for the current port*/
 	gpio_regs->int_clr = stat_reg;
 	while(stat_reg) {
-		pin = find_first_set_bit(stat_reg);
+		pin = no_os_find_first_set_bit(stat_reg);
 		if (!gpio_callback[port][pin]) {
 			stat_reg >>= pin + 1;
 			continue;
@@ -119,7 +119,7 @@ int32_t max_gpio_get(struct no_os_gpio_desc **desc,
 	}
 
 	g_cfg->port = MXC_GPIO_GET_GPIO(pextra->port);
-	g_cfg->mask = BIT(param->number);
+	g_cfg->mask = NO_OS_BIT(param->number);
 	g_cfg->pad = m_pad;
 	g_cfg->func = m_func;
 
@@ -218,18 +218,18 @@ int32_t max_gpio_direction_output(struct no_os_gpio_desc *desc, uint8_t value)
 
 	switch(value) {
 	case NO_OS_GPIO_LOW:
-		MXC_GPIO_OutClr(gpio_regs, BIT(desc->number));
+		MXC_GPIO_OutClr(gpio_regs, NO_OS_BIT(desc->number));
 		/** Enable gpio if it was previously set to HIGH_Z */
-		if ((gpio_regs->en0 & BIT(desc->number)) == 0)
-			gpio_regs->en0 |= BIT(desc->number);
+		if ((gpio_regs->en0 & NO_OS_BIT(desc->number)) == 0)
+			gpio_regs->en0 |= NO_OS_BIT(desc->number);
 		break;
 	case NO_OS_GPIO_HIGH:
-		MXC_GPIO_OutSet(gpio_regs, BIT(desc->number));
-		if ((gpio_regs->en0 & BIT(desc->number)) == 0)
-			gpio_regs->en0 |= BIT(desc->number);
+		MXC_GPIO_OutSet(gpio_regs, NO_OS_BIT(desc->number));
+		if ((gpio_regs->en0 & NO_OS_BIT(desc->number)) == 0)
+			gpio_regs->en0 |= NO_OS_BIT(desc->number);
 		break;
 	case NO_OS_GPIO_HIGH_Z:
-		gpio_regs->en0 &= ~BIT(desc->number);
+		gpio_regs->en0 &= ~NO_OS_BIT(desc->number);
 		break;
 	}
 
@@ -283,17 +283,17 @@ int32_t max_gpio_set_value(struct no_os_gpio_desc *desc, uint8_t value)
 
 	switch(value) {
 	case NO_OS_GPIO_LOW:
-		MXC_GPIO_OutClr(gpio_regs, BIT(desc->number));
-		if (gpio_regs->en0 & BIT(desc->number) == 0)
-			gpio_regs->en0 |= BIT(desc->number);
+		MXC_GPIO_OutClr(gpio_regs, NO_OS_BIT(desc->number));
+		if (gpio_regs->en0 & NO_OS_BIT(desc->number) == 0)
+			gpio_regs->en0 |= NO_OS_BIT(desc->number);
 		break;
 	case NO_OS_GPIO_HIGH:
-		MXC_GPIO_OutSet(gpio_regs, BIT(desc->number));
-		if (gpio_regs->en0 & BIT(desc->number) == 0)
-			gpio_regs->en0 |= BIT(desc->number);
+		MXC_GPIO_OutSet(gpio_regs, NO_OS_BIT(desc->number));
+		if (gpio_regs->en0 & NO_OS_BIT(desc->number) == 0)
+			gpio_regs->en0 |= NO_OS_BIT(desc->number);
 		break;
 	case NO_OS_GPIO_HIGH_Z:
-		gpio_regs->en0 &= ~BIT(desc->number);
+		gpio_regs->en0 &= ~NO_OS_BIT(desc->number);
 		break;
 	default:
 		return -EINVAL;
@@ -325,12 +325,12 @@ int32_t max_gpio_get_value(struct no_os_gpio_desc *desc, uint8_t *value)
 	if (!max_gpio_cfg)
 		return -EINVAL;
 
-	if (!(gpio_regs->en0 & BIT(desc->number)))
+	if (!(gpio_regs->en0 & NO_OS_BIT(desc->number)))
 		*value = NO_OS_GPIO_HIGH_Z;
 	else if (max_gpio_cfg->func == MXC_GPIO_FUNC_IN)
-		*value = MXC_GPIO_InGet(gpio_regs, BIT(desc->number));
+		*value = MXC_GPIO_InGet(gpio_regs, NO_OS_BIT(desc->number));
 	else
-		*value = MXC_GPIO_OutGet(gpio_regs, BIT(desc->number));
+		*value = MXC_GPIO_OutGet(gpio_regs, NO_OS_BIT(desc->number));
 
 	return 0;
 }
@@ -399,52 +399,52 @@ static int32_t max_gpio_irq_set_trigger_level(struct no_os_irq_ctrl_desc *desc,
 	g_desc = desc->extra;
 	max_gpio_cfg = g_desc->extra;
 	gpio_regs = max_gpio_cfg->port;
-	is_enabled = gpio_regs->int_en & BIT(irq_id);
+	is_enabled = gpio_regs->int_en & NO_OS_BIT(irq_id);
 
 	/** Disable interrupts for pin desc->number */
-	gpio_regs->int_en &= ~(BIT(irq_id));
+	gpio_regs->int_en &= ~(NO_OS_BIT(irq_id));
 	/** Clear pending interrupts for pin desc->number */
-	gpio_regs->int_clr |= BIT(irq_id);
+	gpio_regs->int_clr |= NO_OS_BIT(irq_id);
 	/** Disable dual edge interrupts for pin desc->number */
-	gpio_regs->int_dual_edge &= ~BIT(irq_id);
+	gpio_regs->int_dual_edge &= ~NO_OS_BIT(irq_id);
 
 	switch (trig_l) {
 	case NO_OS_IRQ_EDGE_RISING:
 		/** Select edge triggered interrupt mode */
-		gpio_regs->int_mod |= BIT(irq_id);
+		gpio_regs->int_mod |= NO_OS_BIT(irq_id);
 		/** Select rising edge trigger condition */
-		gpio_regs->int_pol |= BIT(irq_id);
+		gpio_regs->int_pol |= NO_OS_BIT(irq_id);
 		break;
 	case NO_OS_IRQ_EDGE_FALLING:
 		/** Select edge triggered interrupt mode */
-		gpio_regs->int_mod |= BIT(irq_id);
+		gpio_regs->int_mod |= NO_OS_BIT(irq_id);
 		/** Select falling edge trigger condition */
-		gpio_regs->int_pol &= ~(BIT(irq_id));
+		gpio_regs->int_pol &= ~(NO_OS_BIT(irq_id));
 		break;
 	case NO_OS_IRQ_LEVEL_HIGH:
 		/** Select level triggered interrupt mode */
-		gpio_regs->int_mod &= ~(BIT(irq_id));
+		gpio_regs->int_mod &= ~(NO_OS_BIT(irq_id));
 		/** Select level high trigger condition */
-		//gpio_regs->int_pol |= BIT(irq_id);
+		//gpio_regs->int_pol |= NO_OS_BIT(irq_id);
 		break;
 	case NO_OS_IRQ_LEVEL_LOW:
 		/** Select level triggered interrupt mode */
-		gpio_regs->int_mod &= ~(BIT(irq_id));
+		gpio_regs->int_mod &= ~(NO_OS_BIT(irq_id));
 		/** Select level low trigger condition */
-		gpio_regs->int_pol &= ~(BIT(irq_id));
+		gpio_regs->int_pol &= ~(NO_OS_BIT(irq_id));
 		break;
 	case NO_OS_IRQ_EDGE_BOTH:
 		/** Edge triggered on both rising and falling */
-		gpio_regs->int_dual_edge |= BIT(irq_id);
+		gpio_regs->int_dual_edge |= NO_OS_BIT(irq_id);
 		break;
 	default:
 		if (is_enabled)
-			gpio_regs->int_en |= BIT(irq_id);
+			gpio_regs->int_en |= NO_OS_BIT(irq_id);
 		return -EINVAL;
 	}
 	/** Enable interupts for pin desc->number if they were already enabled*/
 	if (is_enabled)
-		gpio_regs->int_en |= BIT(irq_id);
+		gpio_regs->int_en |= NO_OS_BIT(irq_id);
 
 	return 0;
 }
@@ -548,7 +548,7 @@ static int32_t max_gpio_enable_irq(struct no_os_irq_ctrl_desc *desc,
 	max_gpio_cfg = g_desc->extra;
 	gpio_regs = max_gpio_cfg->port;
 
-	MXC_GPIO_EnableInt(gpio_regs, BIT(irq_id));
+	MXC_GPIO_EnableInt(gpio_regs, NO_OS_BIT(irq_id));
 
 	return 0;
 }
@@ -572,7 +572,7 @@ static int32_t max_gpio_disable_irq(struct no_os_irq_ctrl_desc *desc,
 	g_desc = desc->extra;
 	gpio_regs = MXC_GPIO_GET_GPIO(g_desc->number);
 
-	MXC_GPIO_DisableInt(gpio_regs, BIT(irq_id));
+	MXC_GPIO_DisableInt(gpio_regs, NO_OS_BIT(irq_id));
 
 	return 0;
 }

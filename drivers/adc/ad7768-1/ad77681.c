@@ -147,7 +147,7 @@ int32_t ad77681_spi_reg_read(struct ad77681_dev *dev,
 	}
 
 	reg_data[0] = AD77681_REG_READ(reg_addr);
-	memcpy(reg_data + 1, buf + 1, ARRAY_SIZE(buf) - 1);
+	memcpy(reg_data + 1, buf + 1, NO_OS_ARRAY_SIZE(buf) - 1);
 
 	return ret;
 }
@@ -322,7 +322,7 @@ int32_t ad77681_spi_read_adc_data(struct ad77681_dev *dev,
 	}
 
 	/* Fill the adc_data buffer */
-	memcpy(adc_data, buf, ARRAY_SIZE(buf));
+	memcpy(adc_data, buf, NO_OS_ARRAY_SIZE(buf));
 
 	return ret;
 }
@@ -883,7 +883,7 @@ int32_t ad77681_power_down(struct ad77681_dev *dev,
 		/* Insert '1' to the beginning of the wake_sequence*/
 		wake_sequence[0] = 0x80;
 		ret = no_os_spi_write_and_read(dev->spi_desc, wake_sequence,
-					       ARRAY_SIZE(wake_sequence));
+					       NO_OS_ARRAY_SIZE(wake_sequence));
 	}
 
 	return ret;
