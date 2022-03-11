@@ -2247,7 +2247,7 @@ void iio_ad9361_get_dev_descriptor(struct iio_ad9361_desc *desc,
  * ad9361 device.
  * @param desc - Descriptor.
  * @param init - Configuration structure.
- * @return SUCCESS in case of success, FAILURE otherwise.
+ * @return 0 in case of success, -1 otherwise.
  */
 int32_t iio_ad9361_init(struct iio_ad9361_desc **desc,
 			struct iio_ad9361_init_param *init)
@@ -2257,7 +2257,7 @@ int32_t iio_ad9361_init(struct iio_ad9361_desc **desc,
 	iio_ad9361_inst = (struct iio_ad9361_desc *)calloc(1,
 			  sizeof(struct iio_ad9361_desc));
 	if (!iio_ad9361_inst)
-		return FAILURE;
+		return -1;
 
 	iio_ad9361_inst->dev_descriptor.num_ch = sizeof(iio_ad9361_channels) / sizeof(
 				iio_ad9361_channels[0]);
@@ -2267,20 +2267,20 @@ int32_t iio_ad9361_init(struct iio_ad9361_desc **desc,
 	iio_ad9361_inst->dev_descriptor.buffer_attributes = NULL;
 	*desc = iio_ad9361_inst;
 
-	return SUCCESS;
+	return 0;
 }
 
 /**
  * @brief Release resources.
  * @param desc - Descriptor.
- * @return SUCCESS in case of success, FAILURE otherwise.
+ * @return 0 in case of success, -1 otherwise.
  */
 int32_t iio_ad9361_remove(struct iio_ad9361_desc *desc)
 {
 	if (!desc)
-		return FAILURE;
+		return -1;
 
 	free(desc);
 
-	return SUCCESS;
+	return 0;
 }
